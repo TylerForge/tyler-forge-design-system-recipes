@@ -6,21 +6,13 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../../../shared.css" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css"
-    />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
     <style>
-      forge-card {
+      .card {
         margin-bottom: 16px;
+        max-width: 1024px;
       }
 
       .skip-to-content-link {
@@ -45,46 +37,35 @@
   </head>
 
   <body class="forge-typography">
-    <a
-      class="skip-to-content-link forge-typography--body1"
-      href="/"
-      onclick="event.preventDefault(); document.getElementById('content').focus();"
-      >Skip to main content</a
-    >
+    <a class="skip-to-content-link forge-typography--body1" href="/" onclick="event.preventDefault(); document.getElementById('content').focus();">
+      Skip to main content
+    </a>
     <forge-scaffold>
       <forge-app-bar slot="header" title-text="App name">
         <forge-app-bar-menu-button slot="start"></forge-app-bar-menu-button>
-        <forge-icon
-          slot="logo"
-          name="forge_logo"
-          external
-          external-type="custom"
-        ></forge-icon>
+        <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
       </forge-app-bar>
       <forge-drawer slot="body-left">
         <aside>
           <forge-list>
-            <forge-list-item>Home</forge-list-item>
-            <forge-divider></forge-divider>
-            <forge-list-item>Create</forge-list-item>
-            <forge-list-item>Search</forge-list-item>
-            <forge-list-item>Settings</forge-list-item>
-            <forge-list-item>Template</forge-list-item>
+            <forge-list-item>Menu option 1</forge-list-item>
+            <forge-list-item>Menu option 2</forge-list-item>
+            <forge-list-item>Menu option 3</forge-list-item>
           </forge-list>
         </aside>
       </forge-drawer>
       <main slot="body" class="content" id="content" tabindex="0">
-        <forge-card>
+        <forge-card class="card">
           <h2 class="forge-typography--headline5">Section 1</h2>
           Lorem minim veniam magna enim eiusmod minim dolor sit laboris nisi
           exercitation. Tempor commodo id labore veniam mollit qui veniam.
         </forge-card>
-        <forge-card>
+        <forge-card class="card">
           <h2 class="forge-typography--headline5">Section 2</h2>
           Lorem minim veniam magna enim eiusmod minim dolor sit laboris nisi
           exercitation. Tempor commodo id labore veniam mollit qui veniam.
         </forge-card>
-        <forge-card>
+        <forge-card class="card">
           <h2 class="forge-typography--headline5">Section 3</h2>
           Lorem minim veniam magna enim eiusmod minim dolor sit laboris nisi
           exercitation. Tempor commodo id labore veniam mollit qui veniam.
@@ -92,9 +73,6 @@
       </main>
     </forge-scaffold>
 
-    <script
-      type="module"
-      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/index.js"
-    ></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/index.js"></script>
   </body>
 </html>
