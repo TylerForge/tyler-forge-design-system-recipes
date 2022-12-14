@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Horizontal aligned label values - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+
+  <style>
+    .card {
+      --forge-card-padding: 0;
+    }
+
+    .label {
+      width: 100px;
+    }
+
+    .container {
+      display: grid;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .long-value::part(container) {
+      align-items: start;
+    }
+  </style>
+</head>
+
+<body class="forge-typography content">
+  <forge-card class="card">
+    <forge-toolbar>
+      <h1 slot="start" class="forge-typography--headline5">Horizontally-aligned label values</h1>
+    </forge-toolbar>
+    <dl class="container">
+      <forge-label-value density="dense">
+        <dt slot="label" class="label">Label</dt>
+        <dd slot="value">Value</dd>
+      </forge-label-value>
+      <forge-label-value density="dense">
+        <dt slot="label" class="label">Very long label</dt>
+        <dd slot="value">Value</dd>
+      </forge-label-value>
+      <forge-label-value density="dense" class="long-value">
+        <dt slot="label" class="label">Long value</dt>
+        <dd slot="value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis convallis dui. Sed quis lacus at lorem euismod aliquet. Nulla eu turpis eu magna faucibus eleifend eu quis ante. Sed et aliquam magna. Pellentesque odio ante, vulputate sit amet euismod nec, viverra a sem. Maecenas sed purus nisi. Nullam bibendum magna tortor, vel tincidunt ex gravida non. Quisque pretium vitae leo in viverra. Nunc sit amet finibus diam.</dd>
+      </forge-label-value>
+      <forge-label-value density="dense" empty>
+        <dt slot="label" class="label">Empty</dt>
+        <dd slot="value">n/a</dd>
+      </forge-label-value>
+    </dl>
+  </forge-card>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/label-value/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+</body>
+
+</html>
