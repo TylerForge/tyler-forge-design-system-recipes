@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Session timeout - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+</head>
+
+<body class="forge-typography">
+  <forge-scaffold>
+    <forge-app-bar slot="header" title-text="Application Title">
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+    </forge-app-bar>
+    <main slot="body">
+      <forge-page-state>
+        <img src="https://cdn.forge.tylertech.com/v1/images/spot-hero/session-timeout-spot-hero.svg" slot="graphic" alt="" />
+        <div slot="title">Sorry we dozed off! You were away so we logged you out.</div>
+        <p slot="message">Sign in again to get back to what you were doing.</p>
+        <forge-button type="raised" slot="action">
+          <button>Go back</button>
+        </forge-button>
+      </forge-page-state>
+    </main>
+  </forge-scaffold>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/page-state/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+</body>
+
+</html>
