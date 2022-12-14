@@ -10,11 +10,17 @@
     <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
     <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
     <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
+
+    <style>
+        .secondary-toolbar {
+            --forge-toolbar-padding: 0;
+        }
+    </style>
 </head>
 
 <body class="forge-typography">
     <main class="content-center">
-        <forge-toolbar>
+        <forge-toolbar class="secondary-toolbar">
             <forge-icon-button slot="start">
                 <button type="button" aria-label="Go back">
                     <forge-icon name="arrow_back" external></forge-icon>
