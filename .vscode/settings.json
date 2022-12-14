@@ -8,5 +8,8 @@
     "prettier.useTabs": false,
     "html.format.wrapLineLength": 0,
     "html.format.wrapAttributes": "aligned-multiple",
-    "prettier.tabWidth": 1
+    "prettier.tabWidth": 1,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
 }
