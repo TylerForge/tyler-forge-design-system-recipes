@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+:not(:defined) {
+  display: none;
+}
+
+.content {
+  padding: 24px;
+}
+
+.content.content--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.demo-grid {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  flex-wrap: wrap;
+}

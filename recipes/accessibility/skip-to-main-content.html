@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Skip to Main Content Recipe - Forge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../../shared.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css"
+    />
+    <style>
+      forge-card {
+        margin-bottom: 16px;
+      }
+
+      .skip-to-content-link {
+        background: var(--mdc-theme-secondary);
+        color: var(--mdc-theme-text-primary-on-light);
+        height: 30px;
+        left: 16px;
+        padding: 8px;
+        position: absolute;
+        transform: translateY(-100%);
+        transition: transform 300ms;
+        z-index: var(--forge-z-index-tooltip);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .skip-to-content-link:focus {
+        transform: translateY(0%);
+      }
+    </style>
+  </head>
+
+  <body class="forge-typography">
+    <a
+      class="skip-to-content-link forge-typography--body1"
+      href="/"
+      onclick="event.preventDefault(); document.getElementById('content').focus();"
+      >Skip to main content</a
+    >
+    <forge-scaffold>
+      <forge-app-bar slot="header" title-text="App name">
+        <forge-app-bar-menu-button slot="start"></forge-app-bar-menu-button>
+        <forge-icon
+          slot="logo"
+          name="forge_logo"
+          external
+          external-type="custom"
+        ></forge-icon>
+      </forge-app-bar>
+      <forge-drawer slot="body-left">
+        <aside>
+          <forge-list>
+            <forge-list-item>Home</forge-list-item>
+            <forge-divider></forge-divider>
+            <forge-list-item>Create</forge-list-item>
+            <forge-list-item>Search</forge-list-item>
+            <forge-list-item>Settings</forge-list-item>
+            <forge-list-item>Template</forge-list-item>
+          </forge-list>
+        </aside>
+      </forge-drawer>
+      <main slot="body" class="content" id="content" tabindex="0">
+        <forge-card>
+          <h2 class="forge-typography--headline5">Section 1</h2>
+          Lorem minim veniam magna enim eiusmod minim dolor sit laboris nisi
+          exercitation. Tempor commodo id labore veniam mollit qui veniam.
+        </forge-card>
+        <forge-card>
+          <h2 class="forge-typography--headline5">Section 2</h2>
+          Lorem minim veniam magna enim eiusmod minim dolor sit laboris nisi
+          exercitation. Tempor commodo id labore veniam mollit qui veniam.
+        </forge-card>
+        <forge-card>
+          <h2 class="forge-typography--headline5">Section 3</h2>
+          Lorem minim veniam magna enim eiusmod minim dolor sit laboris nisi
+          exercitation. Tempor commodo id labore veniam mollit qui veniam.
+        </forge-card>
+      </main>
+    </forge-scaffold>
+
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/index.js"
+    ></script>
+  </body>
+</html>

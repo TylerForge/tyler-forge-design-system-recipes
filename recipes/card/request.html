@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Card Request Recipe - Forge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../shared.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css"
+    />
+    <style>
+      forge-card {
+        --forge-card-padding: 0;
+        max-width: 768px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 16px;
+        align-items: center;
+        border-left: 8px solid var(--mdc-theme-primary);
+        padding: 8px;
+      }
+
+      .illustration-container {
+        display: flex;
+      }
+
+      .illustration {
+        max-width: 64px;
+        grid-column: 1 / 2;
+      }
+
+      .date-request {
+        grid-column: 2 / 9;
+      }
+
+      .view-all {
+        grid-column: 9 / 13;
+        justify-self: end;
+      }
+    </style>
+  </head>
+
+  <body class="forge-typography">
+    <main class="content content--center">
+      <forge-card>
+        <div class="grid-container">
+          <div class="illustration-container">
+            <img
+              src="https://cdn.forge.tylertech.com/v1/images/spot/land-zoning-spot.png"
+              alt="Land Zoning"
+              class="illustration"
+            />
+          </div>
+          <div class="date-request">
+            <forge-label-value>
+              <div slot="label">07/18/2019</div>
+              <div slot="value">2 Pending requests to approve</div>
+            </forge-label-value>
+          </div>
+          <div class="view-all">
+            <forge-button>
+              <button type="button">
+                <span>View all</span>
+                <forge-icon name="open_in_new" external></forge-icon>
+              </button>
+            </forge-button>
+          </div>
+        </div>
+      </forge-card>
+    </main>
+
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/label-value/index.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"
+    ></script>
+  </body>
+</html>

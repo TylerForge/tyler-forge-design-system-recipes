@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Card Profile Recipe - Forge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../shared.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css"
+    />
+    <style>
+      forge-card {
+        --forge-card-padding: 0;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        width: 300px;
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+        background-image: url('https://png.pngtree.com/svg/20170602/0db185fb9c.svg');
+        background-position: center center;
+        background-size: cover;
+        border-radius: 50%;
+        margin: 16px 0px 8px 0px;
+      }
+
+      .footer {
+        margin-top: 16px;
+        padding: 0px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #e1e1e1;
+        height: 56px;
+      }
+
+      .overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 180px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .zero-margin {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+
+  <body class="forge-typography">
+    <main class="content content--center">
+      <forge-card>
+        <div class="container">
+          <div class="avatar"></div>
+          <h6 class="forge-typography--headline5 overflow zero-margin">
+            Rick Dalton
+          </h6>
+          <span class="forge-typography--body1" style="margin-bottom: 16px"
+            >Hollywood, CA</span
+          >
+          <div class="overflow">
+            <a href="mailto:email@tylertech.com">rick.dalton@tylertech.com</a>
+          </div>
+        </div>
+        <div class="footer">
+          <div>
+            <forge-button>
+              <button type="button">View Profile</button>
+            </forge-button>
+          </div>
+          <div>
+            <forge-icon-button>
+              <button type="button">
+                <forge-icon name="notifications" external></forge-icon>
+              </button>
+            </forge-icon-button>
+          </div>
+        </div>
+      </forge-card>
+    </main>
+
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"
+    ></script>
+  </body>
+</html>
