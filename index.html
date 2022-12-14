@@ -4,7 +4,47 @@
     <title>Forge Design System Recipes</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-  </head>
+    <link rel="stylesheet" href="./shared.css" />
 
-  <body class="forge-typography"></body>
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
+
+    <style>
+      .content > forge-card {
+        max-width: 1024px;
+      }
+
+      .content h2 {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body class="forge-typography">
+    <forge-scaffold>
+      <forge-app-bar slot="header" title-text="Tyler Forge Design System Recipes"></forge-app-bar>
+      <main slot="body" class="content">
+        <forge-card outlined>
+          <h2 class="forge-typography--title">Index</h2>
+
+          <forge-list>
+            <h3>Accessibility</h3>
+            <forge-list-item href="/recipes/accessibility/skip-to-main-content.html">Skip to main content</forge-list-item>
+
+            <h3>Card</h3>
+            <forge-list-item value="/recipes/card/card.html">Basic</forge-list-item>
+            <forge-list-item value="/recipes/card/profile.html">Profile</forge-list-item>
+            <forge-list-item value="/recipes/card/request.html">Request</forge-list-item>
+
+            <h3>Dialog</h3>
+            <forge-list-item value="/recipes/dialog/dialog.html">Basic</forge-list-item>
+          </forge-list>
+        </forge-card>
+      </main>
+    </forge-scaffold>
+
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  </body>
 </html>

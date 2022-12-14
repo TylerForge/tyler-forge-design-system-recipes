@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Simple Dialog Recipe - Forge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../../shared.css" />
+
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/dialog/forge-dialog.css" />
+    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+
+    <style>
+      .dialog-container {
+        padding: 0px 16px;
+        max-height: 80vh;
+        width: 80vw;
+      }
+
+      .dialog-header {
+        --forge-toolbar-padding: 24px;
+      }
+
+      .dialog-body {
+        padding: 0px 24px;
+        overflow-y: auto;
+      }
+
+      .dialog-body-text {
+        margin: 0px;
+      }
+
+      .footer-toolbar {
+        --forge-toolbar-height: 68px;
+        --forge-toolbar-border-bottom: none; 
+        --forge-toolbar-padding: 0px;
+      }
+
+      .footer-toolbar forge-button:first-child {
+        margin-right: 8px
+      }
+
+      @media screen and (min-width: 1024px) {
+        .dialog-container {
+          max-width: 40vw;
+        }
+      }
+      
+      @media screen and (max-width: 599px) {
+        .dialog-container {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          width: 100%;
+          max-height: 100%;
+        }
+
+        .dialog-body-text {
+          flex: 1;
+        }
+
+        .dialog::part(surface) {
+          height: 100%;
+          width: 100%;
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="forge-typography">
+    <main class="content content--center">
+      <forge-button type="raised">
+        <button type="button" id="show-dialog-button">Show dialog</button>
+      </forge-button>
+
+      <template id="forge-dialog-template">
+				<div class="dialog-container">
+          <h1 class="forge-typography--headline5">Dialog title</h1>
+          <p class="forge-typography--body1 dialog-body-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia eaque illum itaque. Quas, libero eaque veniam et voluptatem quod natus fugit! Nihil consequatur quo corrupti beatae ad, ratione velit aut!
+          </p>
+					<div>
+						<forge-toolbar class="footer-toolbar">
+							<div slot="end">
+								<forge-button type="outlined">
+									<button type="button" id="cancel-button">Close</button>
+								</forge-button>
+								<forge-button type="raised">
+									<button type="button" id="accept-button" forge-dialog-focus>Apply</button>
+								</forge-button>
+							</div>
+						</forge-toolbar>
+					</div>
+				</div>
+			</template>
+    </main>
+
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/dialog/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+
+    <script>
+      const dialogTemplate = document.getElementById('forge-dialog-template');
+
+      const showDialogButton = document.getElementById('show-dialog-button');
+      showDialogButton.addEventListener('click', () => openDialog());
+
+      function openDialog() {
+        // Create the <forge-dialog> element
+        const dialogElement = document.createElement('forge-dialog');
+        dialogElement.classList.add('dialog');
+
+        // Load the template content and set that as the content for the dialog
+        const content = dialogTemplate.content.cloneNode(true);
+        dialogElement.appendChild(content);
+
+        // Listen for the `forge-dialog-close` event (by default it will fire if the backdrop is clicked or if the escape button is pressed)
+        dialogElement.addEventListener('tcw-dialog-close', evt => dialogElement.open = false);
+
+        // Handle the accept button being clicked
+        const acceptButton = dialogElement.querySelector('#accept-button');
+        acceptButton.addEventListener('click', () => {
+          console.log('[dialog] Accept button clicked');
+          dialogElement.open = false;
+        });
+
+        // Handle the cancel button being clicked
+        const cancelButton = dialogElement.querySelector('#cancel-button');
+        cancelButton.addEventListener('click', () => dialogElement.open = false);
+
+        // Shows the dialog by appending it to the body and starting its animations
+        dialogElement.open = true;
+      }
+    </script>
+  </body>
+</html>
