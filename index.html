@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Forge Design System Recipes</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="./shared.css" />
 
-    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
-    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
-    <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
+<head>
+  <title>Forge Design System Recipes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="./shared.css" />
 
-    <style>
-      .content > forge-card {
-        max-width: 1024px;
-      }
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
 
-      .content h2 {
-        margin: 0;
-      }
-    </style>
-  </head>
-  <body class="forge-typography">
-    <forge-scaffold>
-      <forge-app-bar slot="header" title-text="Tyler Forge Design System Recipes"></forge-app-bar>
-      <main slot="body" class="content">
-        <forge-card outlined>
-          <h2 class="forge-typography--title">Index</h2>
+  <style>
+    .content>forge-card {
+      max-width: 1024px;
+    }
 
-          <forge-list>
-            <h3>Accessibility</h3>
-            <forge-list-item href="/recipes/accessibility/skip-to-main-content.html">Skip to main content</forge-list-item>
+    .content h2 {
+      margin: 0;
+    }
+  </style>
+</head>
 
-            <h3>Card</h3>
-            <forge-list-item href="/recipes/card/card.html">Basic</forge-list-item>
-            <forge-list-item href="/recipes/card/profile.html">Profile</forge-list-item>
-            <forge-list-item href="/recipes/card/request.html">Request</forge-list-item>
+<body class="forge-typography">
+  <forge-scaffold>
+    <forge-app-bar slot="header" title-text="Tyler Forge Design System Recipes"></forge-app-bar>
+    <main slot="body" class="content">
+      <forge-card outlined>
+        <h2 class="forge-typography--title">Index</h2>
 
-            <h3>Dialog</h3>
-            <forge-list-item href="/recipes/dialog/dialog.html">Basic</forge-list-item>
-          </forge-list>
-        </forge-card>
-      </main>
-    </forge-scaffold>
+        <forge-list>
+          <h3>Accessibility</h3>
+          <forge-list-item href="/recipes/accessibility/skip-to-main-content.html">Skip to main content</forge-list-item>
 
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
-  </body>
+          <h3>Card</h3>
+          <forge-list-item href="/recipes/card/card.html">Basic</forge-list-item>
+          <forge-list-item href="/recipes/card/profile.html">Profile</forge-list-item>
+          <forge-list-item href="/recipes/card/request.html">Request</forge-list-item>
+
+          <h3>Dialog</h3>
+          <forge-list-item href="/recipes/dialog/dialog.html">Basic</forge-list-item>
+
+          <h3>Toolbar</h3>
+          <forge-list-item href="/recipes/toolbar/dialog-toolbar.html">Dialog toolbars</forge-list-item>
+          <forge-list-item href="/recipes/toolbar/footer-toolbar.html">Footer toolbar</forge-list-item>
+          <forge-list-item href="/recipes/toolbar/secondary-toolbar.html">Secondary toolbar</forge-list-item>
+        </forge-list>
+      </forge-card>
+    </main>
+  </forge-scaffold>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+</body>
+
 </html>

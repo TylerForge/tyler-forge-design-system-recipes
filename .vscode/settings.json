@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.bracketSameLine": false,
+    "prettier.endOfLine": "auto",
+    "prettier.htmlWhitespaceSensitivity": "css",
+    "prettier.printWidth": 120,
+    "prettier.proseWrap": "always",
+    "prettier.useTabs": false,
+    "html.format.wrapLineLength": 0,
+    "html.format.wrapAttributes": "aligned-multiple",
+    "prettier.tabWidth": 1
+}
