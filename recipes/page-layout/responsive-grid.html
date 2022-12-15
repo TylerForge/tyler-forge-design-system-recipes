@@ -132,9 +132,7 @@
 
     const removeCurrentDrawer = () => {
       let drawer = document.getElementById('forge-drawer');
-      if (drawer) {
-        drawer.remove();
-      }
+      drawer?.remove();
     }
 
     // Set the desired media query based on your app
@@ -160,7 +158,18 @@
         // Hide the menu icon when the window is smaller than 960
         initDrawer();
       }
-    })
+    });
+
+    // Watch for window size changes after page load
+    mediaQueryList.addEventListener('change', event => {
+      if (event.matches) {
+        // Use the forge-modal-drawer when the window is smaller than 960
+        initModalDrawer();
+      } else {
+        // Use the forge-drawer when the window is larger than 960
+        initDrawer();
+      }
+    });
   </script>
 
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
