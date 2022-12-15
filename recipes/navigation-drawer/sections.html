@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Navigation drawer with sections - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+
+  <style>
+    forge-drawer p {
+      padding-left: 16px;
+      margin-top: 8px;
+    }
+
+    forge-drawer p:first-child {
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <forge-scaffold>
+    <forge-app-bar title-text="Application Title" slot="header">
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+    </forge-app-bar>
+    <forge-toolbar slot="body-header">
+      <h1 slot="start" class="forge-typography--title">Page title</h1>
+    </forge-toolbar>
+    <forge-drawer slot="body-left">
+      <aside>
+        <p class="forge-typography--caption">Section 1</p>
+        <forge-list>
+          <forge-list-item selected="true">
+            <forge-icon slot="leading" name="add" external></forge-icon>
+            Create
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="search" external></forge-icon>
+            Search
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="settings" external></forge-icon>
+            Settings
+          </forge-list-item>
+        </forge-list>
+        <forge-divider></forge-divider>
+        <p class="forge-typography--caption">Section 2</p>
+        <forge-list>
+          <forge-list-item>
+            <forge-icon slot="leading" name="add" external></forge-icon>
+            Create
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="search" external></forge-icon>
+            Search
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="settings" external></forge-icon>
+            Settings
+          </forge-list-item>
+        </forge-list>
+        <forge-divider></forge-divider>
+
+        <p class="forge-typography--caption">Section 3</p>
+        <forge-list>
+          <forge-list-item>
+            <forge-icon slot="leading" name="add" external></forge-icon>
+            Create
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="search" external></forge-icon>
+            Search
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="settings" external></forge-icon>
+            Settings
+          </forge-list-item>
+        </forge-list>
+      </aside>
+    </forge-drawer>
+    <main slot="body" class="content">
+      <forge-card>
+        <p class="forge-typography--body1">Content area</p>
+      </forge-card>
+    </main>
+  </forge-scaffold>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/avatar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/divider/index.js"></script>
+</body>
+
+</html>

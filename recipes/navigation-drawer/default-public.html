@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Default navigation drawer (backoffice) - Forge</title>
+  <title>Default navigation drawer (public facing) - Forge</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <link rel="stylesheet" href="../../../shared.css" />
@@ -15,6 +15,24 @@
   <style>
     .footer {
       --forge-toolbar-padding: 0;
+    }
+
+    .navigation-header {
+      padding: 16px;
+    }
+
+    .navigation-header h2 {
+      margin-bottom: 0;
+      margin-top: 16px;
+    }
+
+    .navigation-header p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .navigation-header .forge-typography--body2 {
+      color: var(--mdc-theme-text-secondary-on-light);
     }
   </style>
 </head>
@@ -29,6 +47,12 @@
     </forge-toolbar>
     <forge-drawer slot="body-left">
       <aside>
+        <div class="navigation-header">
+          <forge-avatar text="First Last"></forge-avatar>
+          <h2 class="forge-typography--headline5">First Last</h2>
+          <p class="forge-typography--body2">1 Forge Road</p>
+        </div>
+        <forge-divider></forge-divider>
         <forge-list>
           <forge-list-item selected="true">
             <forge-icon slot="leading" name="add" external></forge-icon>
@@ -67,6 +91,8 @@
     <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
     <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
     <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/avatar/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/divider/index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Complex navigation - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+</head>
+
+<body class="forge-typography">
+  <forge-scaffold>
+    <forge-app-bar title-text="Application Title" slot="header">
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+    </forge-app-bar>
+    <forge-toolbar slot="body-header">
+      <h1 slot="start" class="forge-typography--title">Page title</h1>
+    </forge-toolbar>
+    <forge-drawer slot="body-left">
+      <aside>
+        <forge-view-switcher animation-type="slide">
+          <forge-view>
+            <forge-list>
+              <forge-expansion-panel>
+                <forge-list-item slot="header">
+                  <forge-icon slot="leading" name="code" external></forge-icon>
+                  Parent item one
+                  <forge-open-icon slot="trailing"></forge-open-icon>
+                </forge-list-item>
+                <forge-list indented>
+                  <forge-list-item id="navLink1">
+                    Child item one
+                    <forge-icon slot="trailing" name="keyboard_arrow_right" external></forge-icon>
+                  </forge-list-item>
+                  <forge-list-item id="navLink2">
+                    Child item two
+                    <forge-icon slot="trailing" name="keyboard_arrow_right" external></forge-icon>
+                  </forge-list-item>
+                </forge-list>
+              </forge-expansion-panel>
+              <forge-expansion-panel>
+                <forge-list-item slot="header">
+                  <forge-icon slot="leading" name="face" external></forge-icon>
+                  Parent item two
+                  <forge-open-icon slot="trailing"></forge-open-icon>
+                </forge-list-item>
+                <forge-list indented>
+                  <forge-list-item>List Item One</forge-list-item>
+                  <forge-list-item>List Item Two</forge-list-item>
+                  <forge-list-item>List Item Three</forge-list-item>
+                </forge-list>
+              </forge-expansion-panel>
+            </forge-list>
+          </forge-view>
+
+          <forge-view>
+            <forge-toolbar style="--forge-toolbar-padding: 0;">
+              <forge-list slot="center" style="width: 100%;">
+                <forge-list-item id="back-arrow1">
+                  <forge-icon slot="leading" name="arrow_back" external></forge-icon>
+                  Parent item one
+                </forge-list-item>
+              </forge-list>
+            </forge-toolbar>
+            <forge-list>
+              <forge-list-item id="tab1">Sub navigation 1</forge-list-item>
+              <forge-list-item id="tab2">Sub navigation 2</forge-list-item>
+              <forge-list-item id="tab3">Sub navigation 3</forge-list-item>
+            </forge-list>
+          </forge-view>
+
+          <forge-view>
+            <forge-toolbar style="--forge-toolbar-padding: 0;">
+              <forge-list slot="center" style="width: 100%;">
+                <forge-list-item id="back-arrow2">
+                  <forge-icon slot="leading" name="arrow_back" external></forge-icon>
+                  Parent item one
+                </forge-list-item>
+              </forge-list>
+            </forge-toolbar>
+            <forge-list>
+              <forge-list-item id="tab1">More!</forge-list-item>
+              <forge-list-item id="tab2">And another one</forge-list-item>
+              <forge-list-item id="tab3">Wow!</forge-list-item>
+            </forge-list>
+          </forge-view>
+        </forge-view-switcher>
+      </aside>
+    </forge-drawer>
+    <main slot="body" class="content">
+      <forge-card>
+        <p class="forge-typography--body1">Content area</p>
+      </forge-card>
+    </main>
+  </forge-scaffold>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/expansion-panel/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/view-switcher/index.js"></script>
+
+  <script>
+    const navLink1 = document.getElementById('navLink1');
+    const navLink2 = document.getElementById('navLink2');
+    const backArrow1 = document.getElementById('back-arrow1');
+    const backArrow2 = document.getElementById('back-arrow2');
+
+    var viewSwitcher = document.querySelector('forge-view-switcher');
+    navLink1.addEventListener('click', evt => {
+      viewSwitcher.index += 1;
+    });
+
+    navLink2.addEventListener('click', evt => {
+      viewSwitcher.index += 2;
+    });
+
+    backArrow1.addEventListener('click', evt => {
+      viewSwitcher.index = 0;
+    });
+
+    backArrow2.addEventListener('click', evt => {
+      viewSwitcher.index = 0;
+    });
+  </script>
+</body>
+
+</html>
