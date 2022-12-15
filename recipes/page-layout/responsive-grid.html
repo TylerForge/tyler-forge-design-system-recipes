@@ -33,7 +33,8 @@
 </head>
 
 <body class="forge-typography">
-  <forge-scaffold>
+  <forge-scaffold id="main-scaffold">
+    <div slot="left" id="scaffold-left"></div>
     <forge-app-bar title-text="Application Title" slot="header">
       <forge-app-bar-menu-button slot="start" id="menu-button" class="hide"></forge-app-bar-menu-button>
       <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
@@ -42,7 +43,6 @@
       <h1 slot="start" class="forge-typography--title">Page title</h1>
     </forge-toolbar>
     <div slot="body-left" id="scaffold-body-left"></div>
-
     <template id="aside-content">
       <aside>
         <forge-list>
@@ -94,6 +94,7 @@
 
   <script defer>
     const menuButton = document.querySelector('#menu-button');
+    const scaffoldLeft = document.querySelector('#scaffold-left');
     const scaffoldBodyLeft = document.querySelector('#scaffold-body-left');
     const asideTemplate = document.getElementById('aside-content');
 
@@ -108,7 +109,7 @@
       let forgeModalDrawer = document.createElement('forge-modal-drawer');
       forgeModalDrawer.id = 'forge-drawer';
       forgeModalDrawer.appendChild(asideTemplate.content.cloneNode(true));
-      scaffoldBodyLeft.appendChild(forgeModalDrawer);
+      scaffoldLeft.appendChild(forgeModalDrawer);
 
       // Add a click event listener to the menu icon to toggle drawer visibility
       menuButton.addEventListener('click', () => {
