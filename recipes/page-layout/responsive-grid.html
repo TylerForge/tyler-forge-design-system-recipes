@@ -90,87 +90,88 @@
         </forge-card>
       </div>
     </main>
-    </tcw-scaffold>
+  </forge-scaffold>
 
-    <script defer>
-      const menuButton = document.querySelector('#menu-button');
-      const scaffoldBodyLeft = document.querySelector('#scaffold-body-left');
-      const asideTemplate = document.getElementById('aside-content');
+  <script defer>
+    const menuButton = document.querySelector('#menu-button');
+    const scaffoldBodyLeft = document.querySelector('#scaffold-body-left');
+    const asideTemplate = document.getElementById('aside-content');
 
-      const initModalDrawer = () => {
-        // Show the menu icon
-        menuButton.classList.remove('hide');
+    const initModalDrawer = () => {
+      // Show the menu icon
+      menuButton.classList.remove('hide');
 
-        // Remove the current drawer
-        removeCurrentDrawer();
+      // Remove the current drawer
+      removeCurrentDrawer();
 
-        // Add the appropriate drawer to the DOM
-        let forgeModalDrawer = document.createElement('forge-modal-drawer');
-        forgeModalDrawer.id = 'forge-drawer';
-        forgeModalDrawer.appendChild(asideTemplate.content.cloneNode(true));
-        scaffoldBodyLeft.appendChild(forgeModalDrawer);
+      // Add the appropriate drawer to the DOM
+      let forgeModalDrawer = document.createElement('forge-modal-drawer');
+      forgeModalDrawer.id = 'forge-drawer';
+      forgeModalDrawer.appendChild(asideTemplate.content.cloneNode(true));
+      scaffoldBodyLeft.appendChild(forgeModalDrawer);
 
-        // Add a click event listener to the menu icon to toggle drawer visibility
-        menuButton.addEventListener('click', () => {
-          forgeModalDrawer.toggleAttribute('open');
-        })
+      // Add a click event listener to the menu icon to toggle drawer visibility
+      menuButton.addEventListener('click', () => {
+        forgeModalDrawer.toggleAttribute('open');
+      })
+    }
+
+    const initDrawer = () => {
+      // Hide the menu icon
+      menuButton.classList.add('hide');
+
+      // Remove the current drawer
+      removeCurrentDrawer();
+
+      // Add the appropriate drawer to the DOM
+      let forgeDrawer = document.createElement('forge-drawer');
+      forgeDrawer.id = 'forge-drawer'
+      forgeDrawer.appendChild(asideTemplate.content.cloneNode(true));
+      scaffoldBodyLeft.appendChild(forgeDrawer);
+    }
+
+    const removeCurrentDrawer = () => {
+      let drawer = document.getElementById('forge-drawer');
+      if (drawer) {
+        drawer.remove();
       }
+    }
 
-      const initDrawer = () => {
-        // Hide the menu icon
-        menuButton.classList.add('hide');
+    // Set the desired media query based on your app
+    const mediaQuery = '(max-width: 960px)';
+    const mediaQueryList = window.matchMedia(mediaQuery);
 
-        // Remove the current drawer
-        removeCurrentDrawer();
+    // Check the media query on initial page load
+    if (mediaQueryList.matches) {
+      // If the window is smaller than 960 we use the forge-modal-drawer
+      initModalDrawer();
+    }
+    else {
+      // If the window is larger than 960 we use the forge-drawer
+      initDrawer();
+    }
 
-        // Add the appropriate drawer to the DOM
-        let forgeDrawer = document.createElement('forge-drawer');
-        forgeDrawer.id = 'forge-drawer'
-        forgeDrawer.appendChild(asideTemplate.content.cloneNode(true));
-        scaffoldBodyLeft.appendChild(forgeDrawer);
-      }
-
-      const removeCurrentDrawer = () => {
-        let drawer = document.getElementById('forge-drawer');
-        if (drawer) {
-          drawer.remove();
-        }
-      }
-
-      // Set the desired media query based on your app
-      const mediaQuery = '(max-width: 960px)';
-      const mediaQueryList = window.matchMedia(mediaQuery);
-
-      // Check the media query on initial page load
-      if (mediaQueryList.matches) {
-        // If the window is smaller than 960 we use the forge-modal-drawer
+    // Watch for window size changes after page load
+    mediaQueryList.addEventListener('change', event => {
+      if (event.matches) {
+        // Show the menu icon when the window is smaller than 960
         initModalDrawer();
-      }
-      else {
-        // If the window is larger than 960 we use the forge-drawer
+      } else {
+        // Hide the menu icon when the window is smaller than 960
         initDrawer();
       }
+    })
+  </script>
 
-      // Watch for window size changes after page load
-      mediaQueryList.addEventListener('change', event => {
-        if (event.matches) {
-          // Show the menu icon when the window is smaller than 960
-          initModalDrawer();
-        } else {
-          // Hide the menu icon when the window is smaller than 960
-          initDrawer();
-        }
-      })
-    </script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/modal-drawer/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
-    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/menu-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/modal-drawer/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/menu-button/index.js"></script>
 </body>
 
 </html>
