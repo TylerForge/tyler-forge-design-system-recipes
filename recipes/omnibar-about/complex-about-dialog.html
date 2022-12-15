@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Omnibar: about (complex) - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+
+  <style>
+    .dialog-header {
+      --forge-toolbar-border-bottom: none;
+    }
+
+    .dialog-body {
+      padding: 24px;
+      height: 400px;
+      overflow: auto;
+      overflow-x: hidden;
+    }
+
+    .dialog-container {
+      max-width: 740px;
+    }
+
+    .logo-img {
+      height: 48px;
+      margin: 8px 24px 8px 8px;
+    }
+
+    .dialog-footer {
+      --forge-toolbar-height: 80px;
+      display: block;
+      padding: 0;
+    }
+
+    @media only screen and (max-width: 700px) {
+
+      .dialog-tabs,
+      .dialog-header {
+        max-width: 95vw;
+      }
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <div class="content content--center">
+    <forge-button type="raised">
+      <button type="button" id="show-dialog-button">Show complex dialog</button>
+    </forge-button>
+
+    <template id="forge-dialog-template">
+      <div class="dialog-container">
+        <!-- Header -->
+        <forge-toolbar class="dialog-header" style="--forge-toolbar-border-bottom: none">
+          <h1 slot="start" class="forge-typography--title">Forge App&reg; - Version 2050.3</h1>
+
+          <!-- Close button -->
+          <forge-icon-button slot="end" style="margin-right: -16px">
+            <button type="button" id="close-button">
+              <forge-icon name="close" external></forge-icon>
+            </button>
+          </forge-icon-button>
+        </forge-toolbar>
+
+        <!-- Tabs -->
+        <forge-tab-bar class="dialog-tabs">
+          <forge-tab>About</forge-tab>
+          <forge-tab>System information</forge-tab>
+          <forge-tab>User information</forge-tab>
+          <forge-tab>Terms & Conditions</forge-tab>
+        </forge-tab-bar>
+
+        <!-- Body -->
+        <div class="dialog-body">
+          <forge-view-switcher>
+            <forge-view>
+              <div style="margin-bottom: 16px;">
+                <p class="forge-typography--body1">An update is available for Forge<br>2050.3.1.0</p>
+                <forge-button type="raised">
+                  <button type="button">Update now</button>
+                </forge-button>
+              </div>
+              <div>
+                <forge-divider></forge-divider>
+                <p class="forge-typography--body1">Forge&reg; - Version 2050.3</p>
+                <p class="forge-typography--body1">
+                  Awesome Recipes<br>
+                  Forge&reg; is a registered trademark of Tyler Technologies, Inc.
+                </p>
+
+                <p class="forge-typography--body1">
+                  Last, First (first.last)<br>
+                  Tyler Technologies, Inc<br>
+                  370 US Route One<br>
+                  Falmouth, ME 04101 USA<br>
+                </p>
+                <p class="forge-typography--body1">Account: 9999999</p>
+              </div>
+            </forge-view>
+            <forge-view>
+              <forge-label-value>
+                <span slot="label">Application</span>
+                <span slot="value">Cool Forge App</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Database</span>
+                <span slot="value">MySQL</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Framework</span>
+                <span slot="value">Web Components</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Version</span>
+                <span slot="value">2050.3.19038.1</span>
+              </forge-label-value>
+            </forge-view>
+            <forge-view>
+              <forge-label-value>
+                <span slot="label">User ID</span>
+                <span slot="value">first.last</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Name</span>
+                <span slot="value">First Last</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Initials</span>
+                <span slot="value">FL</span>
+              </forge-label-value>
+            </forge-view>
+            <forge-view>
+              <div>
+                <h3 class="forge-typography--headline5">Terms & Conditions</h3>
+                <p class="forge-typography--body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sem est, scelerisque non nulla pellentesque, hendrerit
+                  rhoncus augue. Sed consectetur leo nec dolor lobortis imperdiet. Aliquam quis enim venenatis, rutrum enim id, porta
+                  turpis. Aenean tincidunt sollicitudin leo, non finibus risus laoreet nec. Etiam non ipsum sit amet lorem scelerisque
+                  dictum nec ut eros. Nam viverra accumsan erat, ut vulputate odio dignissim id. Maecenas convallis velit suscipit tempus
+                  ultricies. Aenean ac arcu scelerisque, pulvinar eros id, pharetra turpis. Integer sed est sagittis, rutrum est et,
+                  dignissim orci. Phasellus commodo lobortis ante, at dapibus risus feugiat sit amet. Nunc pellentesque finibus ipsum a
+                  dignissim. Fusce viverra dui at blandit varius. Ut nec posuere est. Sed tristique viverra ipsum et porttitor. In
+                  elementum consequat lacus, vel aliquam est pretium non. </p>
+
+                <p class="forge-typography--body1">Aliquam elementum quam sed leo accumsan, ut fermentum magna dignissim. Aliquam vitae metus venenatis, laoreet leo vitae,
+                  tempus diam. Aliquam faucibus ipsum vel arcu vulputate, non viverra lacus pretium. Nullam sollicitudin, mauris eu ornare
+                  consectetur,</p>
+
+                <h4 class="forge-typography--subtitle1">Restrictions</h4>
+                <p class="forge-typography--body1">Etiam a felis ut libero varius ultrices. In convallis mollis bibendum. In facilisis eget ligula at posuere. Integer tortor ex, tincidunt et libero eget, placerat placerat enim.</p>
+              </div>
+            </forge-view>
+          </forge-view-switcher>
+        </div>
+
+        <!-- Footer -->
+        <forge-toolbar class="dialog-footer" inverted>
+          <img slot="start" src="https://cdn.forge.tylertech.com/v1/images/branding/forge/forge-logo-full-color.svg" class="logo-img" alt="Forge logo" />
+          <p slot="end" class="forge-typography--caption"> Copyright &copy; 1989-2050 Tyler Technologies, Inc. All rights reserved</p>
+        </forge-toolbar>
+      </div>
+    </template>
+  </div>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/dialog/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tabs/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/view-switcher/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/divider/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/label-value/index.js"></script>
+
+  <script>
+    const dialogTemplate = document.getElementById('forge-dialog-template');
+
+    const showDialogButton = document.getElementById('show-dialog-button');
+    showDialogButton.addEventListener('click', () => openDialog());
+
+    function openDialog() {
+      // Create the <forge-dialog> element
+      const dialogElement = document.createElement('forge-dialog');
+
+      // Load the template content and set that as the content for the dialog
+      const content = dialogTemplate.content.cloneNode(true);
+      dialogElement.appendChild(content);
+
+      // Listen for the `forge-dialog-close` event (by default it will fire if the backdrop is clicked or if the escape button is pressed)
+      dialogElement.addEventListener('forge-dialog-close', (evt) => dialogElement.open = false);
+
+      // Handle the close button being clicked
+      const closeButton = dialogElement.querySelector('#close-button');
+      closeButton.addEventListener('click', () => dialogElement.open = false);
+
+      // Shows the dialog by appending it to the body and starting its animations
+      dialogElement.open = true;
+
+      // View switcher event listener
+      const viewSwitcher = document.querySelector('forge-view-switcher');
+      const tabBar = document.querySelector('forge-tab-bar');
+
+      tabBar.addEventListener('forge-tab-bar-activate', ({ detail: { index } }) => {
+        viewSwitcher.index = index;
+      });
+    }
+  </script>
+</body>
+
+</html>
