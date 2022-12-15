@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Responsive grid - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+
+  <style>
+    .hide {
+      display: none;
+    }
+
+    .grid-container {
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .grid-item h3 {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <forge-scaffold>
+    <forge-app-bar title-text="Application Title" slot="header">
+      <forge-app-bar-menu-button slot="start" id="menu-button" class="hide"></forge-app-bar-menu-button>
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+    </forge-app-bar>
+    <forge-toolbar slot="body-header">
+      <h1 slot="start" class="forge-typography--title">Page title</h1>
+    </forge-toolbar>
+    <div slot="body-left" id="scaffold-body-left"></div>
+
+    <template id="aside-content">
+      <aside>
+        <forge-list>
+          <forge-list-item selected="true">
+            <forge-icon slot="leading" name="add" external></forge-icon>
+            Create
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="search" external></forge-icon>
+            Search
+          </forge-list-item>
+          <forge-list-item>
+            <forge-icon slot="leading" name="settings" external></forge-icon>
+            Settings
+          </forge-list-item>
+        </forge-list>
+      </aside>
+    </template>
+
+    <main slot="body" class="content">
+      <div class="grid-container">
+        <forge-card has-padding="false" class="grid-item">
+          <h3 class="forge-typography--title">Card 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quas sint veniam nesciunt architecto et voluptates voluptatum dolores soluta. Aliquid fuga eos vel neque quibusdam sed illum laboriosam sit veritatis!</p>
+        </forge-card>
+        <forge-card has-padding="false" class="grid-item">
+          <h3 class="forge-typography--title">Card 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quas sint veniam nesciunt architecto et voluptates voluptatum dolores soluta. Aliquid fuga eos vel neque quibusdam sed illum laboriosam sit veritatis!</p>
+        </forge-card>
+        <forge-card has-padding="false" class="grid-item">
+          <h3 class="forge-typography--title">Card 3</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quas sint veniam nesciunt architecto et voluptates voluptatum dolores soluta. Aliquid fuga eos vel neque quibusdam sed illum laboriosam sit veritatis!</p>
+        </forge-card>
+        <forge-card has-padding="false" class="grid-item">
+          <h3 class="forge-typography--title">Card 4</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quas sint veniam nesciunt architecto et voluptates voluptatum dolores soluta. Aliquid fuga eos vel neque quibusdam sed illum laboriosam sit veritatis!</p>
+        </forge-card>
+        <forge-card has-padding="false" class="grid-item">
+          <h3 class="forge-typography--title">Card 5</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quas sint veniam nesciunt architecto et voluptates voluptatum dolores soluta. Aliquid fuga eos vel neque quibusdam sed illum laboriosam sit veritatis!</p>
+        </forge-card>
+        <forge-card has-padding="false" class="grid-item">
+          <h3 class="forge-typography--title">Card 6</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quas sint veniam nesciunt architecto et voluptates voluptatum dolores soluta. Aliquid fuga eos vel neque quibusdam sed illum laboriosam sit veritatis!</p>
+        </forge-card>
+      </div>
+    </main>
+    </tcw-scaffold>
+
+    <script defer>
+      const menuButton = document.querySelector('#menu-button');
+      const scaffoldBodyLeft = document.querySelector('#scaffold-body-left');
+      const asideTemplate = document.getElementById('aside-content');
+
+      const initModalDrawer = () => {
+        // Show the menu icon
+        menuButton.classList.remove('hide');
+
+        // Remove the current drawer
+        removeCurrentDrawer();
+
+        // Add the appropriate drawer to the DOM
+        let forgeModalDrawer = document.createElement('forge-modal-drawer');
+        forgeModalDrawer.id = 'forge-drawer';
+        forgeModalDrawer.appendChild(asideTemplate.content.cloneNode(true));
+        scaffoldBodyLeft.appendChild(forgeModalDrawer);
+
+        // Add a click event listener to the menu icon to toggle drawer visibility
+        menuButton.addEventListener('click', () => {
+          forgeModalDrawer.toggleAttribute('open');
+        })
+      }
+
+      const initDrawer = () => {
+        // Hide the menu icon
+        menuButton.classList.add('hide');
+
+        // Remove the current drawer
+        removeCurrentDrawer();
+
+        // Add the appropriate drawer to the DOM
+        let forgeDrawer = document.createElement('forge-drawer');
+        forgeDrawer.id = 'forge-drawer'
+        forgeDrawer.appendChild(asideTemplate.content.cloneNode(true));
+        scaffoldBodyLeft.appendChild(forgeDrawer);
+      }
+
+      const removeCurrentDrawer = () => {
+        let drawer = document.getElementById('forge-drawer');
+        if (drawer) {
+          drawer.remove();
+        }
+      }
+
+      // Set the desired media query based on your app
+      const mediaQuery = '(max-width: 960px)';
+      const mediaQueryList = window.matchMedia(mediaQuery);
+
+      // Check the media query on initial page load
+      if (mediaQueryList.matches) {
+        // If the window is smaller than 960 we use the forge-modal-drawer
+        initModalDrawer();
+      }
+      else {
+        // If the window is larger than 960 we use the forge-drawer
+        initDrawer();
+      }
+
+      // Watch for window size changes after page load
+      mediaQueryList.addEventListener('change', event => {
+        if (event.matches) {
+          // Show the menu icon when the window is smaller than 960
+          initModalDrawer();
+        } else {
+          // Hide the menu icon when the window is smaller than 960
+          initDrawer();
+        }
+      })
+    </script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/drawer/modal-drawer/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+    <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/menu-button/index.js"></script>
+</body>
+
+</html>
