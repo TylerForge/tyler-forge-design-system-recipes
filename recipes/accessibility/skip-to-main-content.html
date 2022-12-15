@@ -56,7 +56,10 @@
       </forge-drawer>
       <main slot="body" class="content" id="content" tabindex="0">
         <forge-card class="card">
-          <p>Focus the menu button in the app-bar and shift+tab to see focus the element.</p>
+          <p>Focus the menu button in the app-bar and shift+tab to focus the element, or click the button below to set focus to it for you.</p>
+          <forge-button type="unelevated">
+            <button type="button" onclick="document.querySelector('.skip-to-content-link').focus()">Focus link</button>
+          </forge-button>
         </forge-card>
       </main>
     </forge-scaffold>
