@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Omnibar: about (simple) - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+
+  <style>
+    .dialog-header {
+      --forge-toolbar-padding: 24px;
+    }
+
+    .dialog-body {
+      padding: 0 24px;
+    }
+
+    .logo-img {
+      height: 48px;
+      margin: 8px 24px 8px 8px;
+    }
+
+    .dialog-footer {
+      --forge-toolbar-height: 80px;
+      display: block;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <div class="content content--center">
+    <forge-button type="raised">
+      <button type="button" id="show-dialog-button">Show simple dialog</button>
+    </forge-button>
+
+    <template id="forge-dialog-template">
+      <div class="forge-dialog-container">
+        <forge-toolbar class="dialog-header" style="--forge-toolbar-border-bottom: none">
+          <h1 slot="start" class="forge-typography--title">Forge App&reg; - Version 2050.3</h1>
+          <forge-icon-button slot="end" style="margin-right: -16px">
+            <button type="button" id="close-button">
+              <forge-icon name="close" external></forge-icon>
+            </button>
+          </forge-icon-button>
+        </forge-toolbar>
+        <div class="dialog-body">
+          <p class="forge-typography--body1">Build Stamp: 2050.3.19017.1</p>
+        </div>
+        <forge-toolbar class="dialog-footer" inverted>
+          <img slot="start" src="https://cdn.forge.tylertech.com/v1/images/branding/forge/forge-logo-full-color.svg" class="logo-img" alt="Forge logo" />
+          <p slot="end" class="forge-typography--caption"> Copyright &copy; 1989-2050 Tyler Technologies, Inc. All rights reserved</p>
+        </forge-toolbar>
+      </div>
+    </template>
+  </div>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/dialog/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+
+  <script>
+    const dialogTemplate = document.getElementById('forge-dialog-template');
+
+    const showDialogButton = document.getElementById('show-dialog-button');
+    showDialogButton.addEventListener('click', () => openDialog());
+
+    function openDialog() {
+      // Create the <forge-dialog> element
+      const dialogElement = document.createElement('forge-dialog');
+
+      // Load the template content and set that as the content for the dialog
+      const content = dialogTemplate.content.cloneNode(true);
+      dialogElement.appendChild(content);
+
+      // Listen for the `forge-dialog-close` event (by default it will fire if the backdrop is clicked or if the escape button is pressed)
+      dialogElement.addEventListener('forge-dialog-close', (evt) => dialogElement.open = false);
+
+      // Handle the close button being clicked
+      const closeButton = dialogElement.querySelector('#close-button');
+      closeButton.addEventListener('click', () => dialogElement.open = false);
+
+      // Shows the dialog by appending it to the body and starting its animations
+      dialogElement.open = true;
+    }
+  </script>
+</body>
+
+</html>

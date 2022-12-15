@@ -128,7 +128,7 @@
       dialogElement.appendChild(content);
 
       // Listen for the `forge-dialog-close` event (by default it will fire if the backdrop is clicked or if the escape button is pressed)
-      dialogElement.addEventListener('tcw-dialog-close', evt => dialogElement.open = false);
+      dialogElement.addEventListener('forge-dialog-close', evt => dialogElement.open = false);
 
       // Handle the accept button being clicked
       const acceptButton = dialogElement.querySelector('#accept-button');
