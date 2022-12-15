@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Icon actions - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/forge-table.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/forge-tooltip.css" />
+
+  <style>
+    forge-card {
+      --forge-card-padding: 0;
+    }
+
+    .paginator {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .forge-table-expandable-row {
+      padding: 16px 24px;
+    }
+
+    .forge-table-expandable-row > forge-card {
+      --forge-card-padding: 16px;
+    }
+
+    .forge-table-row--expanded,
+    .forge-table-expandable-row {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .forge-table-row__expandable-content-cell {
+      padding: 0;
+      border-top: 1px solid var(--forge-theme-border-color);
+    }
+
+    .card-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .inner-title {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <main class="content">
+    <forge-card>
+      <forge-toolbar id="table-head">
+        <h3 slot="start" class="forge-typography--headline5">Consumption</h3>
+      </forge-toolbar>
+
+      <forge-table></forge-table>
+
+      <div class="paginator">
+        <forge-paginator total="6"></forge-paginator>
+      </div>
+    </forge-card>
+  </main>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/paginator/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/label-value/index.js"></script>
+
+  <script src="./shared/table-columns.js"></script>
+  <script src="./shared/table-data.js"></script>
+
+  <script>
+    const tableRef = document.querySelector('forge-table');
+    tableRef.columnConfigurations = [
+      ...window.ForgeTableColumns,
+      { align: 'center', template: getExpandRowColumnTemplate, cellStyle: { width: '50px' } }
+    ];
+    tableRef.data = window.ForgeTableData;
+
+    function getExpandRowColumnTemplate(rowIndex) {
+      const iconButton = document.createElement('forge-icon-button');
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.addEventListener('click', evt => {
+        if (tableRef.isRowExpanded(rowIndex)) {
+          tableRef.collapseRow(rowIndex);
+          icon.name = 'keyboard_arrow_down';
+        } else {
+          tableRef.expandRow(rowIndex, buildRowTemplate(rowIndex));
+          icon.name = 'keyboard_arrow_up';
+        }
+      });
+      iconButton.appendChild(button);
+
+      const icon = document.createElement('forge-icon');
+      icon.name = 'keyboard_arrow_down';
+      icon.external = true;
+      button.appendChild(icon);
+
+      return iconButton;
+    }
+
+    function buildRowTemplate(rowIndex) {
+      return `
+        <div class="forge-table-expandable-row">
+          <forge-card outlined>
+            <h2 class="forge-typography--subtitle1-secondary inner-title">Time of use data</h2>
+            <div class="card-inner">
+              <forge-label-value>
+                <span slot="label">On peak use</span>
+                <span slot="value">231 kWh</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Mid peak use</span>
+                <span slot="value">230 kWh</span>
+              </forge-label-value>
+              <forge-label-value>
+                <span slot="label">Off peak use</span>
+                <span slot="value">229 kWh</span>
+              </forge-label-value>
+            </div>
+          </forge-card>
+        </div>
+      `;
+    }
+  </script>
+</body>
+
+</html>

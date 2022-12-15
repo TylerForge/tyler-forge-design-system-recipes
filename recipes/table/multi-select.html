@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Multi-select - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/forge-table.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+
+  <style>
+    .content,
+    forge-table {
+      overflow: auto;
+    }
+
+    forge-card {
+      --forge-card-padding: 0;
+    }
+
+    .paginator {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .show {
+      display: initial !important;
+    }
+
+    .table-card {
+      margin: 24px;
+    }
+
+    #select-table {
+      background-color: white;
+    }
+
+    #select-toolbar {
+      --mdc-theme-surface: #C4CAE9;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <main class="content">
+    <forge-card>
+      <forge-toolbar id="table-head">
+        <h3 slot="start" class="tyl-typography--headline5">Consumption</h3>
+      </forge-toolbar>
+      <forge-toolbar class="select-toolbar hide" id="select-toolbar">
+        <h2 slot="start" class="forge-typography--body1">
+          <span id="num-selected-records">1 record</span> selected
+        </h2>
+        <h2 slot="start" style="margin-left: 16px" class="forge-typography--body1">
+          <a href="#">Select all available records</a>
+        </h2>
+        <forge-icon-button slot="end">
+          <button type="button">
+            <forge-icon name="get_app" external></forge-icon>
+          </button>
+        </forge-icon-button>
+        <forge-icon-button slot="end">
+          <button type="button">
+            <forge-icon name="sort" external></forge-icon>
+          </button>
+        </forge-icon-button>
+        <forge-icon-button slot="end">
+          <button type="button">
+            <forge-icon name="more_vert" external></forge-icon>
+          </button>
+        </forge-icon-button>
+      </forge-toolbar>
+
+      <forge-table select></forge-table>
+
+      <div class="paginator">
+        <forge-paginator total="6"></forge-paginator>
+      </div>
+    </forge-card>
+  </main>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/paginator/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+
+  <script src="./shared/table-columns.js"></script>
+  <script src="./shared/table-data.js"></script>
+
+  <script>
+    const table = document.querySelector('forge-table');
+    table.columnConfigurations = window.ForgeTableColumns;
+    table.data = window.ForgeTableData;
+
+    const selectToolbar = document.getElementById('select-toolbar');
+    const tableHead = document.getElementById('table-head');
+
+    function updateSelectToolbar() {
+      const isSelected = table.getSelectedRows().length;
+      const numRecordsLabel = document.querySelector('#num-selected-records');
+
+      if (isSelected) {
+        selectToolbar.classList.add('show');
+        tableHead.classList.add('hide');
+
+        if (isSelected === 1) {
+          numRecordsLabel.textContent =
+            table.getSelectedRows().length + ' record';
+        } else {
+          numRecordsLabel.textContent =
+            table.getSelectedRows().length + ' records';
+        }
+      } else {
+        selectToolbar.classList.remove('show');
+        tableHead.classList.remove('hide');
+      }
+    }
+
+    table.addEventListener('forge-table-select', updateSelectToolbar);
+    table.addEventListener('forge-table-select-all', updateSelectToolbar);
+  </script>
+</body>
+
+</html>

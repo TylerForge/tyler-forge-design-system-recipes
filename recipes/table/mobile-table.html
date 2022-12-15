@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Mobile table - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/utils/forge-flex.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/forge-table.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/forge-tooltip.css" />
+
+  <style>
+    body {
+      overflow: auto;
+    }
+
+    forge-card {
+      --forge-card-padding: 0;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    dl {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+
+    dd {
+      margin-inline-start: 0;
+      margin-inline-end: 0;
+    }
+
+    forge-table {
+      overflow-x: auto;
+    }
+
+    .card-container {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card-container forge-card {
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    .card-container--mobile forge-card {
+      max-width: 480px;
+    }
+
+    .table-item {
+      padding: 16px;
+    }
+
+    .button-container {
+      margin-top: 16px;
+    }
+
+    .button-right {
+      margin-left: 16px;
+    }
+
+    .hidden {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .table-footer-toolbar::part(root) {
+      border-top: none;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <main class="content">
+    <div class="card-container hidden" id="forge-desktop-container">
+      <forge-card has-padding="false">
+        <forge-toolbar>
+          <h1 slot="start" class="forge-typography--headline5">Desktop table</h1>
+          <forge-icon-button slot="end">
+            <button id="forge-mobile-button" type="button" aria-label="Switch to mobile">
+              <forge-icon name="phone_iphone" external class="color-icon"></forge-icon>
+            </button>
+            <forge-tooltip>Switch to mobile</forge-tooltip>
+          </forge-icon-button>
+        </forge-toolbar>
+
+        <forge-table id="forge-desktop-table"></forge-table>
+
+        <forge-toolbar inverted class="table-footer-toolbar">
+          <forge-paginator slot="end" total="7"></forge-paginator>
+        </forge-toolbar>
+      </forge-card>
+    </div>
+
+    <div class="card-container card-container--mobile" id="forge-mobile-container">
+      <forge-card>
+        <forge-toolbar>
+          <h1 class="forge-typography--headline5" slot="start">Mobile table</h1>
+          <forge-icon-button slot="end">
+            <button id="forge-desktop-button" type="button" aria-label="Switch to desktop">
+              <forge-icon name="desktop_windows" external class="color-icon"></forge-icon>
+            </button>
+            <forge-tooltip>Switch to desktop</forge-tooltip>
+          </forge-icon-button>
+        </forge-toolbar>
+        <ul id="forge-table-container"></ul>
+      </forge-card>
+    </div>
+
+    <!-- Table item template -->
+    <template id="forge-table-item-template">
+      <li class="table-item" id="forge-table-item">
+        <dl id="forge-table-grid"></dl>
+        <div class="button-container forge-flex-container--row">
+          <forge-button type="outlined" class="forge-flex-item--right">
+            <button type="button">Action 1</button>
+          </forge-button>
+          <forge-button type="outlined" class="button-right">
+            <button type="button">Action 2</button>
+          </forge-button>
+        </div>
+      </li>
+      <!-- Aria-hidden so it doesn't read as a list item -->
+      <forge-divider id="forge-item-divider" aria-hidden="true"></forge-divider>
+    </template>
+
+    <!-- Label-value pair template -->
+    <template id="forge-table-row-template">
+      <forge-label-value density="dense">
+        <dt slot="label" style="width: 75px; text-transform: capitalize;" id="forge-table-row-label"></dt>
+        <dd slot="value" id="forge-table-row-value"></dd>
+      </forge-label-value>
+    </template>
+  </main>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/badge/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/label-value/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/toolbar/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/divider/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/paginator/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/index.js"></script>
+
+  <script src="./shared/table-columns.js"></script>
+  <script src="./shared/table-data.js"></script>
+
+  <script>
+    const themeMap = {
+      'Approved': 'success',
+      'Rejected': 'danger'
+    };
+    const columnConfigs = [
+      { property: 'name', header: 'Name' },
+      { property: 'address', header: 'Address' },
+      { property: 'animal', header: 'Animal' },
+      { header: 'Status', template: (rowIndex, div, rowData) => createStatusBadge(rowData) },
+      {
+        header: 'Actions',
+        template: () => {
+          return `
+            <forge-button type="outlined" style="margin-right: 16px;">
+              <button type="button">Action 1</button>
+            </forge-button>
+            <forge-button type="outlined">
+              <button type="button">Action 2</button>
+            </forge-button>
+          `;
+        }
+      }
+    ];
+    const tableData = [
+      { name: 'Dolf Brion', address: '0677 Pleasure Place', animal: 'Common genet', status: 'Pending' },
+      { name: 'Stanly O\'Henery', address: '732 Starling Trail', animal: 'Wattled crane', status: 'Approved' },
+      { name: 'Axe Roobottom', address: '8 Petterle Park', animal: 'Roller, lilac-breasted', status: 'Rejected' },
+      { name: 'Agustin Cultcheth', address: '10674 Crescent Oaks Park', animal: 'Swallow (unidentified)', status: 'Pending' },
+      { name: 'Willyt Hobbert', address: '14641 Sunnyside Court', animal: 'Common ringtail', status: 'Approved' },
+      { name: 'Woodman Van der Brug', address: '97594 4th Avenue', animal: 'Black-winged stilt', status: 'Rejected' },
+      { name: 'Donelle Kliemke', address: '061 Arrowood Street', animal: 'Deer, red', status: 'Pending' }
+    ];
+
+    const desktopContainer = document.getElementById('forge-desktop-container');
+    const mobileContainer = document.getElementById('forge-mobile-container');
+    const desktopTable = document.getElementById('forge-desktop-table');
+    const tableItemTemplate = document.getElementById('forge-table-item-template');
+    const tableRowTemplate = document.getElementById('forge-table-row-template');
+    const tableContainer = document.getElementById('forge-table-container');
+
+    function createStatusBadge(data) {
+      const theme = themeMap[data.status] ?? 'info-secondary';
+      return `<forge-badge theme="${theme}">${data.status}</forge-badge>`;
+    }
+
+    function createTableItem(item, itemIndex) {
+      const content = tableItemTemplate.content.cloneNode(true);
+      const itemEl = content.getElementById('forge-table-item');
+      const grid = content.getElementById('forge-table-grid');
+
+      itemEl.setAttribute('aria-label', item.name);
+
+      const columns = Object.keys(item);
+      columns.forEach(prop => {
+        grid.appendChild(createTableRow(prop, item));
+      });
+
+      if (itemIndex === tableData.length - 1) {
+        content.getElementById('forge-item-divider').style.display = 'none';
+      }
+
+      return content;
+    }
+
+    function createTableRow(prop, row) {
+      const content = tableRowTemplate.content.cloneNode(true);
+      const label = content.getElementById('forge-table-row-label');
+      const value = content.getElementById('forge-table-row-value');
+
+      label.textContent = prop;
+      value.innerHTML = prop === 'status' ? createStatusBadge(row) : row[prop];
+
+      return content;
+    }
+
+    tableData.forEach((item, i) => {
+      tableContainer.appendChild(createTableItem(item, i));
+    });
+
+    desktopTable.data = tableData;
+    desktopTable.columnConfigurations = columnConfigs;
+
+    document.getElementById('forge-desktop-button').addEventListener('click', () => {
+      mobileContainer.classList.add('hidden');
+      desktopContainer.classList.remove('hidden');
+    });
+
+    document.getElementById('forge-mobile-button').addEventListener('click', () => {
+      desktopContainer.classList.add('hidden');
+      mobileContainer.classList.remove('hidden');
+    });
+  </script>
+</body>
+
+</html>

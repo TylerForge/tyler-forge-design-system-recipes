@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Icon actions - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/forge-table.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/forge-tooltip.css" />
+
+  <style>
+    forge-card {
+      --forge-card-padding: 0;
+    }
+
+    .paginator {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hover {
+      visibility: hidden
+    }
+
+    .forge-table-body__row:hover .hover {
+      visibility: visible;
+    }
+
+    forge-table forge-icon-button forge-icon {
+      color: var(--mdc-theme-text-secondary-on-background);
+    }
+
+    forge-table forge-icon-button:hover forge-icon {
+      color: var(--mdc-theme-text-primary-on-background);
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <main class="content">
+    <forge-card>
+      <forge-toolbar id="table-head">
+        <h3 slot="start" class="forge-typography--headline5">Consumption</h3>
+      </forge-toolbar>
+
+      <forge-table></forge-table>
+
+      <div class="paginator">
+        <forge-paginator total="6"></forge-paginator>
+      </div>
+    </forge-card>
+  </main>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/table/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/paginator/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/index.js"></script>
+
+  <script src="./shared/table-columns.js"></script>
+  <script src="./shared/table-data.js"></script>
+
+  <script>
+    const table = document.querySelector('forge-table');
+    table.columnConfigurations = [
+      ...window.ForgeTableColumns,
+      { header: 'Actions', align: 'center', template: createActionsTemplate, cellStyle: { width: '200px' } }
+    ];
+    table.data = window.ForgeTableData;
+
+    function createActionsTemplate(rowIndex) {
+      const icons = [
+        { name: 'share', tooltip: 'Share' },
+        { name: 'file_download', tooltip: 'Download' },
+        { name: 'launch', tooltip: 'View details' },
+        { name: 'more_vert', tooltip: 'More actions' }
+      ];
+      const div = document.createElement('div');
+
+      icons.forEach(({ name, tooltip: tooltipText }) => {
+        const iconButton = document.createElement('forge-icon-button');
+        iconButton.classList.add('hover');
+        div.appendChild(iconButton);
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        iconButton.appendChild(button);
+
+        const icon = document.createElement('forge-icon');
+        icon.name = name;
+        icon.external = true;
+        button.appendChild(icon);
+
+        const tooltip = document.createElement('forge-tooltip');
+        tooltip.textContent = tooltipText;
+        iconButton.appendChild(tooltip);
+      });
+
+      return div;
+    }
+  </script>
+</body>
+
+</html>
