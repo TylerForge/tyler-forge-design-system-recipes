@@ -154,10 +154,10 @@
       // Watch for window size changes after page load
       mediaQueryList.addEventListener('change', event => {
         if (event.matches) {
-          // Show the menu icon when the window is smaller than 960
+          // Use the forge-modal-drawer when the window is smaller than 960
           initModalDrawer();
         } else {
-          // Hide the menu icon when the window is smaller than 960
+          // Use the forge-drawer when the window is larger than 960
           initDrawer();
         }
       })
