@@ -52,124 +52,133 @@
 </head>
 
 <body class="forge-typography">
-  <div class="content content--center">
-    <forge-button type="raised">
-      <button type="button" id="show-dialog-button">Show complex dialog</button>
-    </forge-button>
+  <forge-scaffold>
+    <forge-app-bar slot="header" title-text="Forge app">
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+      <forge-app-bar-help-button slot="end" id="help-button-menu"></forge-app-bar-help-button>
+    </forge-app-bar>
+    <main slot="body" class="content">
+      <forge-card>
+        <p>Open the help button above and choose "About".</p>
+      </forge-card>
+    </main>
+  </forge-scaffold>
 
-    <template id="forge-dialog-template">
-      <div class="dialog-container">
-        <!-- Header -->
-        <forge-toolbar class="dialog-header" style="--forge-toolbar-border-bottom: none">
-          <h1 slot="start" class="forge-typography--title">Forge App&reg; - Version 2050.3</h1>
+  <template id="forge-dialog-template">
+    <div class="dialog-container">
+      <!-- Header -->
+      <forge-toolbar class="dialog-header" style="--forge-toolbar-border-bottom: none">
+        <h1 slot="start" class="forge-typography--title">Forge App&reg; - Version 2050.3</h1>
 
-          <!-- Close button -->
-          <forge-icon-button slot="end" style="margin-right: -16px">
-            <button type="button" id="close-button">
-              <forge-icon name="close" external></forge-icon>
-            </button>
-          </forge-icon-button>
-        </forge-toolbar>
+        <!-- Close button -->
+        <forge-icon-button slot="end" style="margin-right: -16px">
+          <button type="button" id="close-button">
+            <forge-icon name="close" external></forge-icon>
+          </button>
+        </forge-icon-button>
+      </forge-toolbar>
 
-        <!-- Tabs -->
-        <forge-tab-bar class="dialog-tabs">
-          <forge-tab>About</forge-tab>
-          <forge-tab>System information</forge-tab>
-          <forge-tab>User information</forge-tab>
-          <forge-tab>Terms & Conditions</forge-tab>
-        </forge-tab-bar>
+      <!-- Tabs -->
+      <forge-tab-bar class="dialog-tabs">
+        <forge-tab>About</forge-tab>
+        <forge-tab>System information</forge-tab>
+        <forge-tab>User information</forge-tab>
+        <forge-tab>Terms & Conditions</forge-tab>
+      </forge-tab-bar>
 
-        <!-- Body -->
-        <div class="dialog-body">
-          <forge-view-switcher>
-            <forge-view>
-              <div style="margin-bottom: 16px;">
-                <p class="forge-typography--body1">An update is available for Forge<br>2050.3.1.0</p>
-                <forge-button type="raised">
-                  <button type="button">Update now</button>
-                </forge-button>
-              </div>
-              <div>
-                <forge-divider></forge-divider>
-                <p class="forge-typography--body1">Forge&reg; - Version 2050.3</p>
-                <p class="forge-typography--body1">
-                  Awesome Recipes<br>
-                  Forge&reg; is a registered trademark of Tyler Technologies, Inc.
-                </p>
+      <!-- Body -->
+      <div class="dialog-body">
+        <forge-view-switcher>
+          <forge-view>
+            <div style="margin-bottom: 16px;">
+              <p class="forge-typography--body1">An update is available for Forge<br>2050.3.1.0</p>
+              <forge-button type="raised">
+                <button type="button">Update now</button>
+              </forge-button>
+            </div>
+            <div>
+              <forge-divider></forge-divider>
+              <p class="forge-typography--body1">Forge&reg; - Version 2050.3</p>
+              <p class="forge-typography--body1">
+                Awesome Recipes<br>
+                Forge&reg; is a registered trademark of Tyler Technologies, Inc.
+              </p>
 
-                <p class="forge-typography--body1">
-                  Last, First (first.last)<br>
-                  Tyler Technologies, Inc<br>
-                  370 US Route One<br>
-                  Falmouth, ME 04101 USA<br>
-                </p>
-                <p class="forge-typography--body1">Account: 9999999</p>
-              </div>
-            </forge-view>
-            <forge-view>
-              <forge-label-value>
-                <span slot="label">Application</span>
-                <span slot="value">Cool Forge App</span>
-              </forge-label-value>
-              <forge-label-value>
-                <span slot="label">Database</span>
-                <span slot="value">MySQL</span>
-              </forge-label-value>
-              <forge-label-value>
-                <span slot="label">Framework</span>
-                <span slot="value">Web Components</span>
-              </forge-label-value>
-              <forge-label-value>
-                <span slot="label">Version</span>
-                <span slot="value">2050.3.19038.1</span>
-              </forge-label-value>
-            </forge-view>
-            <forge-view>
-              <forge-label-value>
-                <span slot="label">User ID</span>
-                <span slot="value">first.last</span>
-              </forge-label-value>
-              <forge-label-value>
-                <span slot="label">Name</span>
-                <span slot="value">First Last</span>
-              </forge-label-value>
-              <forge-label-value>
-                <span slot="label">Initials</span>
-                <span slot="value">FL</span>
-              </forge-label-value>
-            </forge-view>
-            <forge-view>
-              <div>
-                <h3 class="forge-typography--headline5">Terms & Conditions</h3>
-                <p class="forge-typography--body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sem est, scelerisque non nulla pellentesque, hendrerit
-                  rhoncus augue. Sed consectetur leo nec dolor lobortis imperdiet. Aliquam quis enim venenatis, rutrum enim id, porta
-                  turpis. Aenean tincidunt sollicitudin leo, non finibus risus laoreet nec. Etiam non ipsum sit amet lorem scelerisque
-                  dictum nec ut eros. Nam viverra accumsan erat, ut vulputate odio dignissim id. Maecenas convallis velit suscipit tempus
-                  ultricies. Aenean ac arcu scelerisque, pulvinar eros id, pharetra turpis. Integer sed est sagittis, rutrum est et,
-                  dignissim orci. Phasellus commodo lobortis ante, at dapibus risus feugiat sit amet. Nunc pellentesque finibus ipsum a
-                  dignissim. Fusce viverra dui at blandit varius. Ut nec posuere est. Sed tristique viverra ipsum et porttitor. In
-                  elementum consequat lacus, vel aliquam est pretium non. </p>
+              <p class="forge-typography--body1">
+                Last, First (first.last)<br>
+                Tyler Technologies, Inc<br>
+                370 US Route One<br>
+                Falmouth, ME 04101 USA<br>
+              </p>
+              <p class="forge-typography--body1">Account: 9999999</p>
+            </div>
+          </forge-view>
+          <forge-view>
+            <forge-label-value>
+              <span slot="label">Application</span>
+              <span slot="value">Cool Forge App</span>
+            </forge-label-value>
+            <forge-label-value>
+              <span slot="label">Database</span>
+              <span slot="value">MySQL</span>
+            </forge-label-value>
+            <forge-label-value>
+              <span slot="label">Framework</span>
+              <span slot="value">Web Components</span>
+            </forge-label-value>
+            <forge-label-value>
+              <span slot="label">Version</span>
+              <span slot="value">2050.3.19038.1</span>
+            </forge-label-value>
+          </forge-view>
+          <forge-view>
+            <forge-label-value>
+              <span slot="label">User ID</span>
+              <span slot="value">first.last</span>
+            </forge-label-value>
+            <forge-label-value>
+              <span slot="label">Name</span>
+              <span slot="value">First Last</span>
+            </forge-label-value>
+            <forge-label-value>
+              <span slot="label">Initials</span>
+              <span slot="value">FL</span>
+            </forge-label-value>
+          </forge-view>
+          <forge-view>
+            <div>
+              <h3 class="forge-typography--headline5">Terms & Conditions</h3>
+              <p class="forge-typography--body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sem est, scelerisque non nulla pellentesque, hendrerit
+                rhoncus augue. Sed consectetur leo nec dolor lobortis imperdiet. Aliquam quis enim venenatis, rutrum enim id, porta
+                turpis. Aenean tincidunt sollicitudin leo, non finibus risus laoreet nec. Etiam non ipsum sit amet lorem scelerisque
+                dictum nec ut eros. Nam viverra accumsan erat, ut vulputate odio dignissim id. Maecenas convallis velit suscipit tempus
+                ultricies. Aenean ac arcu scelerisque, pulvinar eros id, pharetra turpis. Integer sed est sagittis, rutrum est et,
+                dignissim orci. Phasellus commodo lobortis ante, at dapibus risus feugiat sit amet. Nunc pellentesque finibus ipsum a
+                dignissim. Fusce viverra dui at blandit varius. Ut nec posuere est. Sed tristique viverra ipsum et porttitor. In
+                elementum consequat lacus, vel aliquam est pretium non. </p>
 
-                <p class="forge-typography--body1">Aliquam elementum quam sed leo accumsan, ut fermentum magna dignissim. Aliquam vitae metus venenatis, laoreet leo vitae,
-                  tempus diam. Aliquam faucibus ipsum vel arcu vulputate, non viverra lacus pretium. Nullam sollicitudin, mauris eu ornare
-                  consectetur,</p>
+              <p class="forge-typography--body1">Aliquam elementum quam sed leo accumsan, ut fermentum magna dignissim. Aliquam vitae metus venenatis, laoreet leo vitae,
+                tempus diam. Aliquam faucibus ipsum vel arcu vulputate, non viverra lacus pretium. Nullam sollicitudin, mauris eu ornare
+                consectetur,</p>
 
-                <h4 class="forge-typography--subtitle1">Restrictions</h4>
-                <p class="forge-typography--body1">Etiam a felis ut libero varius ultrices. In convallis mollis bibendum. In facilisis eget ligula at posuere. Integer tortor ex, tincidunt et libero eget, placerat placerat enim.</p>
-              </div>
-            </forge-view>
-          </forge-view-switcher>
-        </div>
-
-        <!-- Footer -->
-        <forge-toolbar class="dialog-footer" inverted>
-          <img slot="start" src="https://cdn.forge.tylertech.com/v1/images/branding/forge/forge-logo-full-color.svg" class="logo-img" alt="Forge logo" />
-          <p slot="end" class="forge-typography--caption"> Copyright &copy; 1989-2050 Tyler Technologies, Inc. All rights reserved</p>
-        </forge-toolbar>
+              <h4 class="forge-typography--subtitle1">Restrictions</h4>
+              <p class="forge-typography--body1">Etiam a felis ut libero varius ultrices. In convallis mollis bibendum. In facilisis eget ligula at posuere. Integer tortor ex, tincidunt et libero eget, placerat placerat enim.</p>
+            </div>
+          </forge-view>
+        </forge-view-switcher>
       </div>
-    </template>
-  </div>
 
+      <!-- Footer -->
+      <forge-toolbar class="dialog-footer" inverted>
+        <img slot="start" src="https://cdn.forge.tylertech.com/v1/images/branding/forge/forge-logo-full-color.svg" class="logo-img" alt="Forge logo" />
+        <p slot="end" class="forge-typography--caption"> Copyright &copy; 1989-2050 Tyler Technologies, Inc. All rights reserved</p>
+      </forge-toolbar>
+    </div>
+  </template>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/dialog/index.js"></script>
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
@@ -182,9 +191,27 @@
 
   <script>
     const dialogTemplate = document.getElementById('forge-dialog-template');
+    const helpMenuButton = document.getElementById('help-button-menu');
+    helpMenuButton.options = [
+      { 
+        leadingBuilder: () => {
+          const icon = document.createElement('forge-icon');
+          icon.name = 'info_outline';
+          icon.external = true;
+          icon.style.width = '24px'; // Placeholder width while icon is loading async to ensure dropdown positioning updates properly
+          return icon;
+        },
+        label: 'About',
+        value: 'about'
+      }
+    ];
 
-    const showDialogButton = document.getElementById('show-dialog-button');
-    showDialogButton.addEventListener('click', () => openDialog());
+    helpMenuButton.addEventListener('forge-menu-select', evt => {
+      switch (evt.detail.value) {
+        case 'about':
+        openDialog();
+      }
+    });
 
     function openDialog() {
       // Create the <forge-dialog> element

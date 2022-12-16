@@ -37,32 +37,41 @@
 </head>
 
 <body class="forge-typography">
-  <div class="content content--center">
-    <forge-button type="raised">
-      <button type="button" id="show-dialog-button">Show simple dialog</button>
-    </forge-button>
+  <forge-scaffold>
+    <forge-app-bar slot="header" title-text="Forge app">
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+      <forge-app-bar-help-button slot="end" id="help-button-menu"></forge-app-bar-help-button>
+    </forge-app-bar>
+    <main slot="body" class="content">
+      <forge-card>
+        <p>Open the help button above and choose "About".</p>
+      </forge-card>
+    </main>
+  </forge-scaffold>
 
-    <template id="forge-dialog-template">
-      <div class="forge-dialog-container">
-        <forge-toolbar class="dialog-header" style="--forge-toolbar-border-bottom: none">
-          <h1 slot="start" class="forge-typography--title">Forge App&reg; - Version 2050.3</h1>
-          <forge-icon-button slot="end" style="margin-right: -16px">
-            <button type="button" id="close-button">
-              <forge-icon name="close" external></forge-icon>
-            </button>
-          </forge-icon-button>
-        </forge-toolbar>
-        <div class="dialog-body">
-          <p class="forge-typography--body1">Build Stamp: 2050.3.19017.1</p>
-        </div>
-        <forge-toolbar class="dialog-footer" inverted>
-          <img slot="start" src="https://cdn.forge.tylertech.com/v1/images/branding/forge/forge-logo-full-color.svg" class="logo-img" alt="Forge logo" />
-          <p slot="end" class="forge-typography--caption"> Copyright &copy; 1989-2050 Tyler Technologies, Inc. All rights reserved</p>
-        </forge-toolbar>
+  <template id="forge-dialog-template">
+    <div class="forge-dialog-container">
+      <forge-toolbar class="dialog-header" style="--forge-toolbar-border-bottom: none">
+        <h1 slot="start" class="forge-typography--title">Forge App&reg; - Version 2050.3</h1>
+        <forge-icon-button slot="end" style="margin-right: -16px">
+          <button type="button" id="close-button">
+            <forge-icon name="close" external></forge-icon>
+          </button>
+        </forge-icon-button>
+      </forge-toolbar>
+      <div class="dialog-body">
+        <p class="forge-typography--body1">Build Stamp: 2050.3.19017.1</p>
       </div>
-    </template>
-  </div>
+      <forge-toolbar class="dialog-footer" inverted>
+        <img slot="start" src="https://cdn.forge.tylertech.com/v1/images/branding/forge/forge-logo-full-color.svg" class="logo-img" alt="Forge logo" />
+        <p slot="end" class="forge-typography--caption"> Copyright &copy; 1989-2050 Tyler Technologies, Inc. All rights reserved</p>
+      </forge-toolbar>
+    </div>
+  </template>
 
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/scaffold/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/app-bar/index.js"></script>
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/dialog/index.js"></script>
   <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
@@ -71,9 +80,27 @@
 
   <script>
     const dialogTemplate = document.getElementById('forge-dialog-template');
+    const helpMenuButton = document.getElementById('help-button-menu');
+    helpMenuButton.options = [
+      { 
+        leadingBuilder: () => {
+          const icon = document.createElement('forge-icon');
+          icon.name = 'info_outline';
+          icon.external = true;
+          icon.style.width = '24px'; // Placeholder width while icon is loading async to ensure dropdown positioning updates properly
+          return icon;
+        },
+        label: 'About',
+        value: 'about'
+      }
+    ];
 
-    const showDialogButton = document.getElementById('show-dialog-button');
-    showDialogButton.addEventListener('click', () => openDialog());
+    helpMenuButton.addEventListener('forge-menu-select', evt => {
+      switch (evt.detail.value) {
+        case 'about':
+        openDialog();
+      }
+    });
 
     function openDialog() {
       // Create the <forge-dialog> element
