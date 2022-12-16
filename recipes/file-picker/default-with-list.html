@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Default file picker with list - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/forge-tooltip.css" />
+
+  <style>
+    body {
+      overflow: auto;
+    }
+    
+    .content {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    forge-card {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .file-picker {
+      --forge-file-picker-width: 100%;
+    }
+
+    .file-list:empty {
+      display: none;
+    }
+
+    .remove-button {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <main class="content">
+    <forge-card>
+      <forge-file-picker class="file-picker" id="forge-file-picker" max-size="100000" multiple>
+        <span slot="primary">Drag files here or</span>
+        <forge-button type="outlined">
+          <button type="button">Select files</button>
+        </forge-button>
+        <span slot="secondary">Files must be under 100 kB</span>
+      </forge-file-picker>
+      <forge-list class="file-list" id="forge-file-list" static></forge-list>
+    </forge-card>
+  </main>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/file-picker/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/list/index.js"></script>
+
+  <script>
+    const filePicker = document.getElementById('forge-file-picker');
+    const fileList = document.getElementById('forge-file-list');
+
+    filePicker.addEventListener('forge-file-picker-change', event => {
+      console.log('forge-file-picker-change', event.detail);
+      event.detail.legalFiles.forEach(file => {
+        createListItem(file, true);
+      });
+      event.detail.illegalFiles.forEach(file => {
+        createListItem(file, false);
+      });
+    });
+
+    function createListItem(file, isLegal) {
+      const listItem = document.createElement('forge-list-item');
+      const fileIcon = document.createElement('forge-icon');
+      const statusIcon = document.createElement('forge-icon');
+      const removeForgeButton = document.createElement('forge-icon-button');
+      const removeButton = document.createElement('button');
+      const removeIcon = document.createElement('forge-icon');
+      const tooltip = document.createElement('forge-tooltip');
+      const id = Date.now().toString();
+
+      if (file.type.startsWith('image/')) {
+        fileIcon.name = 'image';
+      } else {
+        fileIcon.name = 'file'
+        fileIcon.externalType = 'extended';
+      }
+      fileIcon.external = true;
+      fileIcon.slot = 'leading';
+
+      // In an actual application, replace this icon with a 24px circular progress component while the file is uploading
+      statusIcon.name = isLegal ? 'check_circle' : 'error';
+      statusIcon.external = true;
+      statusIcon.slot = 'trailing'
+      statusIcon.style.color = isLegal ? 'var(--forge-theme-success)' : 'var(--forge-theme-danger)';
+
+      removeForgeButton.slot = 'trailing'
+      removeForgeButton.dense = true;
+      removeForgeButton.classList.add('remove-button');
+      removeButton.setAttribute('aria-label', 'Remove file');
+      removeButton.addEventListener('click', () => removeListItem(id));
+      removeIcon.name = 'close';
+      removeIcon.external = true;
+      removeButton.append(removeIcon);
+      removeForgeButton.append(removeButton);
+
+      tooltip.append('Remove');
+
+      if (isLegal) {
+        listItem.append(file.name);
+      } else {
+        const name = document.createElement('span');
+        const error = document.createElement('span');
+        
+        name.slot = 'title';
+        name.append(file.name);
+
+        error.slot = 'subtitle';
+        error.append('File size is too large');
+        error.style.color = 'var(--forge-theme-danger)';
+
+        listItem.twoLine = true;
+        listItem.append(name);
+        listItem.append(error);
+      }
+
+      listItem.value = id;
+      listItem.append(fileIcon);
+      listItem.append(statusIcon);
+      listItem.append(removeForgeButton);
+      listItem.append(tooltip);
+      fileList.append(listItem);
+    }
+
+    function removeListItem(id) {
+      const listItems = Array.from(fileList.children);
+      listItems
+        .find(listItem => listItem.value === id)
+        .remove();
+    }
+  </script>
+</body>
+
+</html>

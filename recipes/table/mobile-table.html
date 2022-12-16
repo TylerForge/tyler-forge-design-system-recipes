@@ -93,6 +93,10 @@
     .table-footer-toolbar::part(root) {
       border-top: none;
     }
+
+    .action-button {
+      white-space: nowrap;
+    }
   </style>
 </head>
 
@@ -189,10 +193,10 @@
         template: () => {
           return `
             <forge-button type="outlined" style="margin-right: 16px;">
-              <button type="button">Action 1</button>
+              <button type="button" class="action-button">Action 1</button>
             </forge-button>
             <forge-button type="outlined">
-              <button type="button">Action 2</button>
+              <button type="button" class="action-button">Action 2</button>
             </forge-button>
           `;
         }

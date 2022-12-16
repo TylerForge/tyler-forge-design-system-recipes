@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Default file picker with image gallery - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/theme/forge-theme.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/typography/forge-typography.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/forge-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/forge-tooltip.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/utils/forge-flex.css" />
+
+  <style>
+    body {
+      overflow: auto;
+    }
+
+    .content {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    forge-card {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .file-picker {
+      --forge-file-picker-width: 100%;
+    }
+
+    .file-grid {
+      display: grid;
+      /* Change this to control the size of grid items */
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .file-grid:empty {
+      display: none;
+    }
+
+    .file-grid > forge-card {
+      --forge-card-padding: 0;
+      margin-bottom: 0;
+    }
+
+    .grid-item-top {
+      position: relative;
+      width: 100%;
+      height: 0;
+      /* Change this to control the aspect ratio of the thumbnail */
+      padding-bottom: 100%;
+    }
+
+    .grid-item-top img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      /* Some images might be stretched; possible workaround is using background-img instead of img */
+      object-fit: cover;
+    }
+
+    .grid-item-bottom {
+      padding: 8px;
+      padding-left: 16px;
+      border-top: solid 1px #e0e0e0;
+    }
+
+    .grid-item-bottom div {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .grid-item-bottom > forge-icon, .grid-item-bottom > forge-icon-button {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+
+<body class="forge-typography">
+  <main class="content">
+    <forge-card>
+      <forge-file-picker class="file-picker" id="forge-file-picker" accept="image/*" multiple>
+        <span slot="primary">Drag files here or</span>
+        <forge-button type="outlined">
+          <button type="button">Select images</button>
+        </forge-button>
+        <span slot="secondary">Files must be under 100 kB</span>
+      </forge-file-picker>
+      <div class="file-grid" id="forge-file-grid"></div>
+    </forge-card>
+  </main>
+
+  <template id="forge-grid-item-template">
+    <div class="grid-item-top">
+      <img id="forge-grid-item-image" src="https://cdn.forge.tylertech.com/v1/images/spot/error-spot.svg" alt="Unable to load this image"></img>
+    </div>
+    <div class="forge-flex-container--row grid-item-bottom">
+      <div class="tyl-flex-item--left forge-typography--caption" id="forge-grid-item-name"></div>
+      <forge-tooltip id="forge-grid-item-tooltip"></forge-tooltip>
+      <forge-icon id="forge-grid-item-icon" external></forge-icon>
+      <forge-icon-button dense>
+        <button id="forge-remove-button" aria-label="Remove file">
+          <forge-icon name="close" external class="color-icon"></forge-icon>
+        </button>
+      </forge-icon-button>
+      <forge-tooltip>Remove</forge-tooltip>
+    </div>
+  </template>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/card/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/file-picker/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon/index.js"></script>
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/tooltip/index.js"></script>
+
+  <script>
+    const filePicker = document.getElementById('forge-file-picker');
+    const fileGrid = document.getElementById('forge-file-grid');
+    const gridItemTemplate = document.getElementById('forge-grid-item-template');
+
+    filePicker.addEventListener('forge-file-picker-change', ({ detail: { legalFiles, illegalFiles }}) => {
+      [...legalFiles, ...illegalFiles].forEach(file => createGridItem(file, true));
+    });
+
+    function createGridItem(file, isLegal) {
+      const id = `grid-item-${Date.now()}`;
+      const gridItem = document.createElement('forge-card');
+      const content = gridItemTemplate.content.cloneNode(true);
+      gridItem.appendChild(content);
+      gridItem.id = id;
+      gridItem.outlined = true;
+
+      const image = gridItem.querySelector('#forge-grid-item-image');
+      const name = gridItem.querySelector('#forge-grid-item-name');
+      const tooltip = gridItem.querySelector('#forge-grid-item-tooltip');
+      const icon = gridItem.querySelector('#forge-grid-item-icon');
+      const button = gridItem.querySelector('#forge-remove-button');
+
+      // Attempt to show the image only if it exists... this should probably also check if the url resolves
+      if (file.type.startsWith('image/')) {
+        image.src = URL.createObjectURL(file);
+        image.alt = file.name;
+        image.onLoad = () => {
+          URL.revokeObjectURL(image.src);
+        };
+      }
+
+      icon.name = isLegal ? 'check_circle' : 'error';
+      icon.style.color = isLegal ? 'var(--forge-theme-success)' : 'var(--forge-theme-danger)';
+
+      name.textContent = file.name;
+      tooltip.textContent = file.name;
+
+      button.addEventListener('click', () => removeGridItem(id));
+
+      fileGrid.appendChild(gridItem);
+    }
+
+    function removeGridItem(id) {
+      fileGrid.querySelector(`#${id}`)?.remove();
+    }
+  </script>
+</body>
+
+</html>
