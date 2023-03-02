@@ -25,7 +25,7 @@
     <nav slot="left" id="nav-container">
       <forge-modal-drawer id="nav-drawer">
         <forge-list>
-          <forge-list-item selected="true">
+          <forge-list-item selected="true" id="first-menu-item">
             <forge-icon slot="leading" name="add" external></forge-icon>
             Create
           </forge-list-item>
@@ -46,11 +46,19 @@
     const forgeAppBarMenuButton = document.querySelector('#menu-button');
     const navContainer = document.querySelector('#nav-container');
     const navDrawer = document.querySelector('#nav-drawer');
+    const firstMenuItem = document.querySelector('#first-menu-item');
 
     forgeAppBarMenuButton.addEventListener('click', () => {
       toggleMenuOpen();
     })
 
+    // When the menu closes, assign focus back to the menu button
+    navDrawer.addEventListener('forge-drawer-after-close', () => {
+      let innerMenuButton = forgeAppBarMenuButton.querySelector('button');
+      innerMenuButton.focus();
+    })
+
+    // The light-dom button element aria attributes when the custom element is defined
     async function setMenuButtonAriaAttributes() {
       await window.customElements.whenDefined('forge-app-bar-menu-button');
       let innerMenuButton = forgeAppBarMenuButton.querySelector('button');
@@ -64,6 +72,12 @@
 
     function toggleMenuOpen() {
       navDrawer.open = !navDrawer.open;
+
+      // If the menu is being opened, put focus on the nav items
+      if (navDrawer.open) {
+        firstMenuItem.focus();
+      }
+
       let currentNavDrawerAriaExpanded = navContainer.getAttribute('aria-expanded');
       if (currentNavDrawerAriaExpanded === 'true') {
         navContainer.setAttribute('aria-expanded', 'false');
