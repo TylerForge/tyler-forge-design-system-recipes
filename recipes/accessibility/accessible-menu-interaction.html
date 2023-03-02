@@ -14,6 +14,12 @@
   <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/icon-button/forge-icon-button.css" />
 </head>
 
+<style>
+  forge-toolbar[no-border] {
+    --forge-toolbar-border-bottom: none;
+  }
+</style>
+
 <body class="forge-typography">
   <forge-scaffold id="main-scaffold">
     <div slot="left" id="scaffold-left"></div>
@@ -24,7 +30,14 @@
 
     <nav slot="left" id="nav-container">
       <forge-modal-drawer id="nav-drawer">
-        <forge-list>
+        <forge-toolbar no-border>
+          <forge-icon-button slot="end">
+            <button type="button" aria-label="Close menu" id="drawer-close-button">
+              <forge-icon name="close" external></forge-icon>
+            </button>
+          </forge-icon-button>
+        </forge-toolbar>
+        <forge-list id="menu-list">
           <forge-list-item selected="true" id="first-menu-item">
             <forge-icon slot="leading" name="add" external></forge-icon>
             Create
@@ -44,11 +57,18 @@
 
   <script defer>
     const forgeAppBarMenuButton = document.querySelector('#menu-button');
+    const drawerCloseButton = document.querySelector('#drawer-close-button');
     const navContainer = document.querySelector('#nav-container');
     const navDrawer = document.querySelector('#nav-drawer');
     const firstMenuItem = document.querySelector('#first-menu-item');
+    const menuItems = document.querySelector('#menu-list').querySelectorAll('forge-list-item');
+    const lastMenuItem = Array.from(menuItems).at(-1);
 
     forgeAppBarMenuButton.addEventListener('click', () => {
+      toggleMenuOpen();
+    })
+
+    drawerCloseButton.addEventListener('click', () => {
       toggleMenuOpen();
     })
 
@@ -56,6 +76,26 @@
     navDrawer.addEventListener('forge-drawer-after-close', () => {
       let innerMenuButton = forgeAppBarMenuButton.querySelector('button');
       innerMenuButton.focus();
+    })
+
+    lastMenuItem.addEventListener('keydown', (event) => {
+      if (event.shiftKey && event.key === 'Tab') {
+        event.preventDefault();
+        lastMenuItem.previousElementSibling.focus();
+        return;
+      }
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        drawerCloseButton.focus();
+      }
+    })
+
+    drawerCloseButton.addEventListener('keydown', () => {
+      if (event.shiftKey && event.key === 'Tab') {
+        event.preventDefault();
+        lastMenuItem.focus();
+        return;
+      }
     })
 
     // The light-dom button element aria attributes when the custom element is defined
