@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "prettier.bracketSameLine": false,
   "prettier.endOfLine": "auto",
   "prettier.htmlWhitespaceSensitivity": "css",
