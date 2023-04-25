@@ -92,10 +92,10 @@ const mediaQueryList = window.matchMedia(mediaQuery);
 
 // Check the media query on initial page load
 if (mediaQueryList.matches) {
- // If the window is smaller than 768 we use the forge-modal-drawer
+ // If the window is smaller than 768 we use the mobile UI
  initMobileView();
 } else {
- // If the window is larger than 768 we use the forge-drawer
+ // If the window is larger than 768 we use the desktop UI
  initDesktopView();
 }
 
