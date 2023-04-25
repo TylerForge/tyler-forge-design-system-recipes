@@ -86,6 +86,10 @@ const setMobileStyles = () => {
   desktopScaffoldBody.style.display = 'none';
 }
 
+const removeStepperBody = () => {
+  document.querySelector('.stepper__body').remove();
+}
+
 // Set the desired media query based on your app
 const mediaQuery = '(max-width: 768px)';
 const mediaQueryList = window.matchMedia(mediaQuery);
@@ -101,10 +105,10 @@ if (mediaQueryList.matches) {
 
 mediaQueryList.addEventListener('change', event => {
  if (event.matches) {
-  document.querySelector('.stepper__body').remove();
+  removeStepperBody();
   initMobileView();
  } else {
-  document.querySelector('.stepper__body').remove();
+  removeStepperBody();
   initDesktopView();
  }
 });
