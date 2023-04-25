@@ -55,28 +55,36 @@ const stepperBody = `
 `;
 
 const initDesktopView = () => {
- document.body.style.backgroundColor = 'var(--mdc-theme-background)';
- desktopStepperContainer.style.display = 'block';
- mobileStepperContainer.style.display = 'none';
- desktopFooterToolbar.insertAdjacentHTML('beforebegin', stepperBody);
- desktopScaffoldBody.style.display = 'block';
- desktopScaffoldBody.style.paddingTop = '24px';
- desktopScaffoldBody.style.margin = '0 auto';
- desktopScaffoldBody.style.maxWidth = '960px';
- desktopScaffoldBody.style.width = '100%';
- mobileScaffoldBody.style.display = 'none';
-};
+  desktopFooterToolbar.insertAdjacentHTML('beforebegin', stepperBody);
+  setDesktopStyles();
+ };
 
-const initMobileView = () => {
- document.body.style.backgroundColor = 'var(--mdc-theme-surface)';
- desktopStepperContainer.style.display = 'none';
- mobileStepperContainer.style.display = 'block';
- mobileStepperContainer.insertAdjacentHTML('beforeend', stepperBody);
- mobileScaffoldBody.style.display = 'block';
- desktopScaffoldBody.style.paddingTop = '0';
- desktopScaffoldBody.style.margin = '0';
- desktopScaffoldBody.style.display = 'none';
-};
+ const initMobileView = () => {
+  mobileStepperContainer.insertAdjacentHTML('beforeend', stepperBody);
+  setMobileStyles();
+ };
+
+const setDesktopStyles = () => {
+  document.body.style.backgroundColor = 'var(--mdc-theme-background)';
+  desktopScaffoldBody.style.display = 'block';
+  desktopScaffoldBody.style.paddingTop = '24px';
+  desktopScaffoldBody.style.margin = '0 auto';
+  desktopScaffoldBody.style.maxWidth = '960px';
+  desktopScaffoldBody.style.width = '100%';
+  mobileScaffoldBody.style.display = 'none';
+  desktopStepperContainer.style.display = 'block';
+  mobileStepperContainer.style.display = 'none';
+}
+
+const setMobileStyles = () => {
+  document.body.style.backgroundColor = 'var(--mdc-theme-surface)';
+  desktopStepperContainer.style.display = 'none';
+  mobileStepperContainer.style.display = 'block';
+  mobileScaffoldBody.style.display = 'block';
+  desktopScaffoldBody.style.paddingTop = '0';
+  desktopScaffoldBody.style.margin = '0';
+  desktopScaffoldBody.style.display = 'none';
+}
 
 // Set the desired media query based on your app
 const mediaQuery = '(max-width: 768px)';
