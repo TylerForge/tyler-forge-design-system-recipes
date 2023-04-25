@@ -1,0 +1,115 @@
+/* DESKTOP */
+.content {
+  margin: 24px auto;
+  max-width: 1320px;
+  width: 100%;
+}
+
+.stepper__container {
+  --forge-card-padding: 0;
+}
+
+.stepper__header {
+  --forge-toolbar-border-bottom: none;
+}
+
+.stepper__steps {
+  padding: 16px;
+}
+
+.stepper__body {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(320px, 1fr) );
+  gap: 16px;
+}
+
+.stepper__column {
+  display: grid;
+  gap: 16px;
+}
+
+.span-full {
+  grid-column: 1/-1;
+}
+
+.center-text {
+  text-align: center;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+/* MOBILE */
+.mobile__stepper {
+  display: block;
+}
+
+.mobile__stepper-header::part(row) {
+  height: 80px;
+}
+
+.mobile__stepper-header::part(section-start) {
+  align-self: center;
+  height: 100%;
+}
+
+.mobile__stepper-header div {
+  margin-inline-start: 12px;
+}
+.mobile__stepper-header h2,
+.mobile__stepper-header span {
+  margin: 0;
+  padding: 0;
+}
+
+.mobile__stepper-step {
+  position: relative;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  align-items: center;
+  /* TO DO - use css var here */
+  border-bottom: 1px solid #ececec;
+}
+
+.progress-circle-container {}
+.progress-circle-container forge-circular-progress {
+  --forge-circular-progress-track-color: var(--mdc-theme-text-disabled-on-background);
+}
+
+.progress-circle-container::after {
+  position: absolute;
+  content: '1 of 4';
+  font-size: 13px;
+  padding-block-end: 4px;
+  height: 72px;
+  width: 72px;
+  top: 22px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 768px) {
+  .mobile__stepper {
+    display: none;
+  }
+  .stepper__container {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mobile__stepper {
+    display: block;
+  }
+  .stepper__container {
+    display: none;
+  }
+}

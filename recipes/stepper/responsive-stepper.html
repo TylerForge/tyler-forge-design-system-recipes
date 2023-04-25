@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Template - Forge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="../../../shared.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/css/tyler-font.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge-core.css" />
+  <link rel="stylesheet" href="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/forge.css" />
+</head>
+
+<body class="forge-typography">
+  <forge-scaffold>
+    <forge-app-bar title-text="Application Title" slot="header">
+      <forge-app-bar-menu-button slot="start" id="menu-button" class="hide"></forge-app-bar-menu-button>
+      <forge-icon slot="logo" name="forge_logo" external external-type="custom"></forge-icon>
+    </forge-app-bar>
+    <aside slot="body-left">
+      <forge-modal-drawer id="stepper-drawer">
+        <div class="stepper__steps">
+          <forge-stepper id="stepper" vertical>
+            <forge-step>Step One</forge-step>
+            <forge-step>Step Two</forge-step>
+            <forge-step>Step Three</forge-step>
+            <forge-step>Done</forge-step>
+          </forge-stepper>
+        </div>
+      </forge-modal-drawer>
+    </aside>
+    <main slot="body" id="desktop-scaffold-body">
+      <forge-card class="stepper__container">
+        <forge-toolbar class="stepper__header" no-border>
+          <h1 slot="start" class="forge-typography--title">Add a new license</h1>
+        </forge-toolbar>
+        <div class="stepper__steps">
+          <forge-stepper id="stepper">
+            <forge-step>Step One</forge-step>
+            <forge-step>Step Two</forge-step>
+            <forge-step>Step Three</forge-step>
+            <forge-step>Done</forge-step>
+          </forge-stepper>
+        </div>
+        <forge-toolbar inverted id="desktop-footer-toolbar">
+          <forge-button type="outlined" slot="start">
+            <button type="button">Cancel</button>
+          </forge-button>
+          <forge-button type="outlined" style="margin-right: 16px" slot="end">
+            <button type="button" id="cancel-dialog-button">Previous</button>
+          </forge-button>
+          <forge-button type="raised" slot="end">
+            <button type="button" id="close-dialog-button" forge-dialog-focus>Next</button>
+          </forge-button>
+        </forge-toolbar>
+      </forge-card>
+    </main>
+    <main slot="body" id="mobile-scaffold-body">
+      <div class="mobile__stepper">
+        <forge-app-bar theme="white" class="mobile__stepper-header">
+          <div slot="start">
+            <h2 class="forge-typography--subtitle1-secondary" slot="start">Stepper title</h2>
+            <span class="forge-typography--body1">This is a second line</span>
+          </div>
+        </forge-app-bar>
+        <div class="mobile__stepper-step">
+          <div class="progress-circle-container">
+            <forge-circular-progress determinate="true" progress=".25"></forge-circular-progress>
+          </div>
+          <div class="mobile__stepper-step-info">
+            <div class="forge-typography--subtitle1-secondary">Items</div>
+            <div class="forge-typography--subtitle1">Next: Step two</div>
+            <forge-button style="margin-left: -8px;">
+              <button type="button" id="view-steps-button">View steps</button>
+            </forge-button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </forge-scaffold>
+
+  <script type="module" src="https://cdn.forge.tylertech.com/v1/libs/@tylertech/forge@2.11.0/index.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
